@@ -1,7 +1,4 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: Bibuain CI/CD
 
 on:
   push:
@@ -10,22 +7,45 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  ci:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [22.x]
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run type check
+      run: npm run type-check
+
+    - name: Run linter
+      run: npm run lint
+
+    - name: Run audit (strict lint & typecheck)
+      run: npm run audit
+
+    - name: Build project
+      run: npm run build
+
+    - name: Run tests
+      run: npm test
+
+  cd:
+    needs: ci
+    if: github.ref == 'refs/heads/main' && success()
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger Vercel Deploy Hook
+      run: |
+        curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"

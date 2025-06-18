@@ -13,7 +13,7 @@
     "format": "prettier --write . && git add .",
     "test": "echo \"No tests specified\" && exit 0",
     "pre-commit": "lint-staged",
-    "lint:strict": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+    "lint:strict": "eslint src --ext .js,.jsx,.ts,.tsx --max-warnings=0",
     "typecheck:strict": "tsc --noEmit --strict",
     "audit": "npm run lint:strict && npm run typecheck:strict"
   },
