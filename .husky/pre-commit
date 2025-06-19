@@ -22,4 +22,13 @@ else
   git add -u
 fi
 
+# 4. Check package-lock.json consistency
+echo "🔍 Checking if package-lock.json is up to date..."
+if ! npm install --package-lock-only --dry-run >/dev/null 2>&1; then
+  echo "❌ package-lock.json is not in sync with package.json. Please run 'npm install'."
+  exit 1
+fi
+
+echo "📦 package-lock.json is in sync."
+
 echo "🚀 Pre-commit checks passed!"
