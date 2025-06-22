@@ -31,15 +31,17 @@ const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
+const SIDEBAR_THEME = "var(--color-sidebar)";
 
 type SidebarContextProps = {
-  state: "expanded" | "collapsed";
   open: boolean;
-  setOpen: (open: boolean) => void;
-  openMobile: boolean;
-  setOpenMobile: (open: boolean) => void;
   isMobile: boolean;
+  openMobile: boolean;
+  state: "expanded" | "collapsed";
+
   toggleSidebar: () => void;
+  setOpen: (open: boolean) => void;
+  setOpenMobile: (open: boolean) => void;
 };
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null);
@@ -60,12 +62,14 @@ function SidebarProvider({
   className,
   style,
   width,
+  theme,
   children,
   ...props
 }: React.ComponentProps<"div"> & {
   open?: boolean;
   defaultOpen?: boolean;
   width?: React.CSSProperties["width"];
+  theme?: React.CSSProperties["backgroundColor"];
   onOpenChange?: (open: boolean) => void;
 }) {
   const isMobile = useIsMobile();
@@ -135,6 +139,7 @@ function SidebarProvider({
           data-slot="sidebar-wrapper"
           style={
             {
+              "--sidebar": theme || SIDEBAR_THEME,
               "--sidebar-width": width || SIDEBAR_WIDTH,
               "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
               ...style,

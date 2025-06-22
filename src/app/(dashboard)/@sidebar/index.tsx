@@ -2,15 +2,12 @@
 
 import Link from "next/link";
 
-import { usePathname } from "next/navigation";
-
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 import { DynamicIcon } from "lucide-react/dynamic";
 
-import { Button } from "@/components/shadcn/ui/button";
 import {
-  SidebarGroupContent,
   useSidebar,
+  SidebarGroupContent,
 } from "@/components/shadcn/ui/sidebar";
 import {
   Avatar,
@@ -18,9 +15,9 @@ import {
   AvatarFallback,
 } from "@/components/shadcn/ui/avatar";
 import {
-  SidebarFooter,
-  SidebarGroup,
   SidebarMenu,
+  SidebarGroup,
+  SidebarFooter,
   SidebarMenuItem,
 } from "@/components/shadcn/ui/sidebar";
 import {
@@ -34,51 +31,76 @@ import { routesGroups } from "./props";
 
 export function SideBar() {
   const sidebar = useSidebar();
-  const pathname = usePathname();
-
-  const root = pathname.split("/")[1];
-  const routes = routesGroups[root];
 
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <SidebarMenuButton asChild className="py-3 h-auto">
-          <Button variant="ghost" className="justify-start">
-            <Avatar className="rounded-none">
-              <AvatarFallback>B</AvatarFallback>
-              <AvatarImage
-                alt="Favicon"
-                src="/favicon.ico"
-                className="rounded-none"
-              />
-            </Avatar>
-            <p className="text-sm font-bold">
-              <span className="uppercase">bibuain</span>
-            </p>
-          </Button>
+        <SidebarMenuButton
+          asChild
+          title="Bibuain Automation"
+          className="py-3 h-auto hover:bg-transparent active:bg-transparent"
+        >
+          <Link href="/">
+            {useMemo(
+              function () {
+                if (sidebar.open) {
+                  return (
+                    <div className="flex gap-3 items-center justify-start">
+                      <Avatar className="rounded-none">
+                        <AvatarFallback>B</AvatarFallback>
+                        <AvatarImage
+                          alt="Favicon"
+                          src="/favicon.ico"
+                          className="rounded-none"
+                        />
+                      </Avatar>
+                      <p className="text-lg font-bold text-white">
+                        <span className="uppercase">bibuain</span>
+                      </p>
+                    </div>
+                  );
+                }
+
+                return (
+                  <Avatar>
+                    <AvatarFallback>B</AvatarFallback>
+                    <AvatarImage
+                      alt="Favicon"
+                      src="/favicon.ico"
+                      className="rounded-none"
+                    />
+                  </Avatar>
+                );
+              },
+              [sidebar.open],
+            )}
+          </Link>
         </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {routes.map(({ name, href, iconName }, index) => (
-                <Fragment key={index}>
-                  <SidebarMenuItem title={name}>
-                    <SidebarMenuButton
-                      asChild
-                      size={sidebar.open ? "lg" : "default"}
-                    >
-                      <Link href={href}>
-                        <DynamicIcon name={iconName} />
-                        <p className="text-sm font-semibold">
-                          <span className="capitalize">{name}</span>
-                        </p>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </Fragment>
-              ))}
+              {routesGroups["rate-management"].map(
+                ({ name, href, iconName }, index) => (
+                  <Fragment key={index}>
+                    <SidebarMenuItem title={name}>
+                      <SidebarMenuButton
+                        asChild
+                        size={sidebar.open ? "lg" : "default"}
+                        // className="text-white hover:bg-transparent active:bg-transparent"
+                      >
+                        <Link href={href}>
+                          <DynamicIcon name={iconName} />
+                          <p className="text-sm font-semibold">
+                            <span className="capitalize">{name}</span>
+                          </p>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  </Fragment>
+                ),
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

@@ -6,6 +6,8 @@ import { SideBar } from "./@sidebar";
 
 interface LayoutProps {
   header: React.ReactNode;
+  metrics: React.ReactNode;
+  profile: React.ReactNode;
   sidebar: React.ReactNode;
   children: React.ReactNode;
 }
@@ -16,7 +18,7 @@ export default function Layout({ children }: LayoutProps) {
       <SideBar />
       <SidebarInset>
         <Header />
-        <div className="p-3">{children}</div>
+        <div className="p-3 pb-10">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );
