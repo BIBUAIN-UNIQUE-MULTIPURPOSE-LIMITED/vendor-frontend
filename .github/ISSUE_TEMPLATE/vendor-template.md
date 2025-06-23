@@ -1,18 +1,35 @@
 ---
+name: vendor-frontend
+about: Template for implementing new features or UI screens
+title: ""
+labels: ""
+assignees: ""
+---
+
+## Summary
+
+Implement the management dashboard UI according to the design provided in the Team Lead section.
+
+🔗 **Figma Design**:  
+[View Figma Design](https://www.figma.com/design/spBhOcStQLenBb7pLasSSf/Bibuain?node-id=250-4325&p=f&t=QMLdTpwWHDHWLYBo-0)
+
+---
 
 ## Requirements
 
 - **Timeline**
+
   - Create a **draft PR** within **1 day**
   - Submit the **final PR** within **5 days**
 
 - **Folder Structure**
+
   - All components must be placed in the `components/` directory
   - Use a specific subfolder to group related components (e.g., `components/adminLogin/Admin.tsx`)
 
 - **Dummy Data**
   - Place all temporary/dummy data inside the `examples/` folder
-  - Do **not** mix dummy data with production code
+  - Do **not** mix dummy data with code
 
 ---
 
