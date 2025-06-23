@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
-import CoinExchange from "./pages/CoinExchange";
+import CoinExchange from "./app/coin-exchange/page";
 import React from "react";
 
 const queryClient = new QueryClient();
