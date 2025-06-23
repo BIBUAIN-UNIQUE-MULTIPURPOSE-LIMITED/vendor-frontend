@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "prepare": "husky",
+    "preinstall": "npx npm-force-resolutions",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -16,6 +17,9 @@
     "lint:strict": "eslint src --ext .js,.jsx,.ts,.tsx --max-warnings=0",
     "typecheck:strict": "tsc --noEmit --strict",
     "audit": "npm run lint:strict && npm run typecheck:strict"
+  },
+  "overrides": {
+    "@swc/helpers": "0.5.17"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -56,6 +60,7 @@
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.4",
     "@react-three/fiber": "^8.18.0",
+    "@swc/helpers": "0.5.17",
     "@tanstack/react-query": "^5.56.2",
     "@types/three": "^0.176.0",
     "class-variance-authority": "^0.7.1",

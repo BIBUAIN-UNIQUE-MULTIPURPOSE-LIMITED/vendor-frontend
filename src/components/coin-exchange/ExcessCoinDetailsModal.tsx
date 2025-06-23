@@ -40,9 +40,7 @@ export const ExcessCoinDetailsModal: React.FC<ExcessCoinDetailsModalProps> = ({
   const [error, setError] = useState<string | null>(null);
 
   // Calculate excess coin
-  const excessCoin = selectedCoin
-    ? selectedCoin.balance - capitalCoin
-    : 0;
+  const excessCoin = selectedCoin ? selectedCoin.balance - capitalCoin : 0;
 
   // Reset form when modal opens/closes or selected coin changes
   useEffect(() => {
@@ -83,7 +81,7 @@ export const ExcessCoinDetailsModal: React.FC<ExcessCoinDetailsModalProps> = ({
         manualRate: !useMarketRate ? manualRate : undefined,
       });
       onClose();
-    } catch (err) {
+    } catch {
       setError("Failed to execute trade. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -151,7 +149,9 @@ export const ExcessCoinDetailsModal: React.FC<ExcessCoinDetailsModalProps> = ({
           <div className="grid gap-2">
             <Label>Rate Option</Label>
             <div className="flex items-center justify-between p-2 border rounded-md bg-gray-50">
-              <span className={useMarketRate ? "font-medium text-amber-600" : ""}>
+              <span
+                className={useMarketRate ? "font-medium text-amber-600" : ""}
+              >
                 Market Rate
               </span>
               <Switch
@@ -159,7 +159,9 @@ export const ExcessCoinDetailsModal: React.FC<ExcessCoinDetailsModalProps> = ({
                 onCheckedChange={setUseMarketRate}
                 className="data-[state=checked]:bg-amber-500"
               />
-              <span className={!useMarketRate ? "font-medium text-amber-600" : ""}>
+              <span
+                className={!useMarketRate ? "font-medium text-amber-600" : ""}
+              >
                 Limit
               </span>
             </div>

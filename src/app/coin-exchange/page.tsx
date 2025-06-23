@@ -1,88 +1,40 @@
-
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import {
-  Search,
-  Clock,
-  ChevronDown,
-  RefreshCw,
-  TrendingUp,
-  TrendingDown,
-  User,
-  LayoutDashboard,
-  ArrowRightLeft,
-  Building2,
-  Mail,
-  Settings,
-  Plus,
-} from "lucide-react";
+import { TrendingUp, TrendingDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import ClockInOut from "@/components/coin-exchange/ClockInOut";
 import RefreshDropdown from "@/components/coin-exchange/RefreshDropdown";
-import CoinBalanceCard from "@/components/coin-exchange/CoinBalanceCard";
-import { Badge } from "@/components/ui/badge";
-import LoadingOverlay from "@/components/coin-exchange/LoadingOverlay";
 
 import AddNewCoinCard from "@/components/coin-exchange/AddNewCoinCard";
 import ExchangeCoinModal from "@/components/coin-exchange/ExchangeCoinModal";
 import platforms from "@/examples/platforms";
 import coinData from "@/examples/coinData";
 import transactionData from "@/examples/transactionData";
-import filters from "@/examples/filters";
 
-
-
-
-
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Platform,
-  CoinBalance,
-  Transaction,
-  RefreshInterval,
-  ExchangeFormData,
-} from "@/types/coin-exchange";
+import { CoinBalance, RefreshInterval } from "@/types/coin-exchange";
 import { cn } from "@/lib/utils";
 
 const CoinExchange = () => {
   const [selectedPlatform, setSelectedPlatform] = useState("All Platform");
 
-const [showFilterPanel, setShowFilterPanel] = useState(false);
+  const [showFilterPanel, setShowFilterPanel] = useState(false);
 
+  const [, setRefreshInterval] = useState<RefreshInterval>("Manual");
+  const refreshTimer = useRef<NodeJS.Timeout | null>(null);
 
-  
-  
-   const [refreshInterval, setRefreshInterval] = useState<RefreshInterval>("Manual");
-const refreshTimer = useRef<NodeJS.Timeout | null>(null);
+  const [, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const [isClockActive, setIsClockActive] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-const [isModalOpen, setIsModalOpen] = useState(false);
+  type ModalData = {
+    symbol: string;
+    total: number;
+    rate: number;
+  };
 
-type ModalData = {
-  symbol: string;
-  total: number;
-  rate: number;
-};
+  const [modalData, setModalData] = useState<ModalData | null>(null);
 
-
-
-const [modalData, setModalData] = useState<ModalData | null>(null);
-
-const [selectedTotalCoin, setSelectedTotalCoin] = useState<number>(0);
-const [selectedCurrentRate, setSelectedCurrentRate] = useState<number>(0);
-
-  
-    // Handle refresh data
+  // Handle refresh data
   const refreshData = useCallback(async () => {
     // This would typically be an API call
     console.log("Refreshing data...");
@@ -93,7 +45,6 @@ const [selectedCurrentRate, setSelectedCurrentRate] = useState<number>(0);
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       // For demo: slightly modify the data to simulate fresh data
-     
     } finally {
       // Add a small delay before hiding the loader for better UX
       await new Promise((resolve) => setTimeout(resolve, 200));
@@ -104,93 +55,53 @@ const [selectedCurrentRate, setSelectedCurrentRate] = useState<number>(0);
   }, []);
 
   // Handle interval selection
-const handleSelectInterval = useCallback(
-  (interval: RefreshInterval) => {
-    // Always store the label
-    setRefreshInterval(interval);
+  const handleSelectInterval = useCallback(
+    (interval: RefreshInterval) => {
+      // Always store the label
+      setRefreshInterval(interval);
 
-    // Clear any previous interval timer
-    if (refreshTimer.current) {
-      clearInterval(refreshTimer.current);
-      refreshTimer.current = null;
-    }
+      // Clear any previous interval timer
+      if (refreshTimer.current) {
+        clearInterval(refreshTimer.current);
+        refreshTimer.current = null;
+      }
 
-    // If "Refresh Now", refresh once immediately
-    if (interval === "Refresh Now") {
-      refreshData();
-      return;
-    }
+      // If "Refresh Now", refresh once immediately
+      if (interval === "Refresh Now") {
+        refreshData();
+        return;
+      }
 
-    // Skip if user selected "Manual"
-    if (interval === "Manual") {
-      return;
-    }
+      // Skip if user selected "Manual"
+      if (interval === "Manual") {
+        return;
+      }
 
-    // Parse minutes from label (e.g. "Every 1 minute")
-    const match = interval.match(/Every (\d+) minute/);
-    const minutes = match ? parseInt(match[1], 10) : 0;
-    if (!minutes) return;
+      // Parse minutes from label (e.g. "Every 1 minute")
+      const match = interval.match(/Every (\d+) minute/);
+      const minutes = match ? parseInt(match[1], 10) : 0;
+      if (!minutes) return;
 
-    const ms = minutes * 60 * 1000;
+      const ms = minutes * 60 * 1000;
 
-    // Start new interval
-    refreshTimer.current = setInterval(() => {
-      refreshData();
-    }, ms);
-  },
-  [refreshData],
-);
-
+      // Start new interval
+      refreshTimer.current = setInterval(() => {
+        refreshData();
+      }, ms);
+    },
+    [refreshData],
+  );
 
   // Clean up interval on unmount
-useEffect(() => {
-  return () => {
-    if (refreshTimer.current) {
-      clearInterval(refreshTimer.current);
-    }
-  };
-}, []);
-
-
-  const handleExchangeCoin = (coin: CoinBalance) => {
-    setSelectedCoin(coin);
-    setIsModalOpen(true);
-  };
-    const [selectedCoin, setSelectedCoin] = useState<CoinBalance | undefined>(
-    undefined,
-  );
-    
-
-  
-
-    const [isClockedOut, setIsClockedOut] = useState(false);
-
-  const handleClockOut = () => {
-    setIsClockActive(false);
-    setIsClockedOut(true);
-
-    // In a real app, this would make an API call to log the work time
-    const logoutData = {
-      timestamp: new Date().toISOString(),
-      sessionComplete: true,
-      // You would include the actual session duration from the timer
+  useEffect(() => {
+    return () => {
+      if (refreshTimer.current) {
+        clearInterval(refreshTimer.current);
+      }
     };
+  }, []);
 
-    console.log("Clocking out...", logoutData);
-  };
-
-  const handleClockIn = () => {
-    setIsClockActive(true);
-    setIsClockedOut(false);
-
-    // In a real app, this would make an API call to start a new session
-    const loginData = {
-      timestamp: new Date().toISOString(),
-      sessionStart: true,
-    };
-
-    console.log("Clocking in...", loginData);
-  };
+  const [] = useState<CoinBalance | undefined>(undefined);
 
   const CoinIcon = ({
     coin,
@@ -199,7 +110,7 @@ useEffect(() => {
     coin: string;
     className?: string;
   }) => {
-const iconMap: { [key: string]: React.ReactNode } = {
+    const iconMap: { [key: string]: React.ReactNode } = {
       BTC: (
         <div
           className={cn(
@@ -248,15 +159,7 @@ const iconMap: { [key: string]: React.ReactNode } = {
         fontFamily: "'Inter', -apple-system, Roboto, Helvetica, sans-serif",
       }}
     >
-      
-
-<div className="px-4 md:px-6 lg:px-8">
-
-
-
-
-
-
+      <div className="px-4 md:px-6 lg:px-8">
         {/* Content */}
         <main className="p-6">
           {/* Page Title */}
@@ -301,11 +204,17 @@ const iconMap: { [key: string]: React.ReactNode } = {
               >
                 Coin Balances
               </h2>
-<div className="flex items-center gap-4">
-  <RefreshDropdown onRefresh={refreshData} onSelectInterval={handleSelectInterval} />
-  <AddNewCoinCard onSelectPlatform={(platform) => console.log("Selected:", platform)} />
-</div>
-
+              <div className="flex items-center gap-4">
+                <RefreshDropdown
+                  onRefresh={refreshData}
+                  onSelectInterval={handleSelectInterval}
+                />
+                <AddNewCoinCard
+                  onSelectPlatform={(platform) =>
+                    console.log("Selected:", platform)
+                  }
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -359,26 +268,26 @@ const iconMap: { [key: string]: React.ReactNode } = {
                         <div className="text-xs text-yellow-600 font-medium">
                           Excess Coin: {data.excess} {coin}
                         </div>
-                       <Button
-  size="sm"
-  className="bg-yellow-400 hover:bg-yellow-500 text-white text-xs px-2 py-1 h-6"
-  style={{
-    fontFamily:
-      "'Geist', -apple-system, Roboto, Helvetica, sans-serif",
-  }}
-  onClick={() => {
-    setModalData({
-      symbol: coin,
-      total: parseFloat(data.balance),
-      rate: parseFloat(data.rate.replace(/[^\d.]/g, "")),
-    });
-    setIsModalOpen(true);
-  }}
->
-  Exchange Coin
-</Button>
-
-
+                        <Button
+                          size="sm"
+                          className="bg-yellow-400 hover:bg-yellow-500 text-white text-xs px-2 py-1 h-6"
+                          style={{
+                            fontFamily:
+                              "'Geist', -apple-system, Roboto, Helvetica, sans-serif",
+                          }}
+                          onClick={() => {
+                            setModalData({
+                              symbol: coin,
+                              total: parseFloat(data.balance),
+                              rate: parseFloat(
+                                data.rate.replace(/[^\d.]/g, ""),
+                              ),
+                            });
+                            setIsModalOpen(true);
+                          }}
+                        >
+                          Exchange Coin
+                        </Button>
                       </div>
                     </div>
                   </CardContent>
@@ -387,61 +296,57 @@ const iconMap: { [key: string]: React.ReactNode } = {
             </div>
           </div>
 
-{/* Recent Exchange */}
-<div>
-  {/* Title & Filter aligned side-by-side */}
-  <div className="flex items-center justify-between mb-4">
-    <h2
-      className="text-xl font-semibold text-black"
-      style={{ letterSpacing: "-0.6px" }}
-    >
-      Recent Exchange
-    </h2>
+          {/* Recent Exchange */}
+          <div>
+            {/* Title & Filter aligned side-by-side */}
+            <div className="flex items-center justify-between mb-4">
+              <h2
+                className="text-xl font-semibold text-black"
+                style={{ letterSpacing: "-0.6px" }}
+              >
+                Recent Exchange
+              </h2>
 
-    <button
-      className="flex items-center gap-2 text-sm text-gray-600 hover:text-black transition"
-      onClick={() => setShowFilterPanel(!showFilterPanel)}
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L15 13.414V19a1 1 0 01-1.447.894l-4-2A1 1 0 019 17v-3.586L3.293 6.707A1 1 0 013 6V4z"
-        />
-      </svg>
-      Filters
-    </button>
-    
-  </div>
-  
+              <button
+                className="flex items-center gap-2 text-sm text-gray-600 hover:text-black transition"
+                onClick={() => setShowFilterPanel(!showFilterPanel)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L15 13.414V19a1 1 0 01-1.447.894l-4-2A1 1 0 019 17v-3.586L3.293 6.707A1 1 0 013 6V4z"
+                  />
+                </svg>
+                Filters
+              </button>
+            </div>
 
-  {/* Table Wrapper */}
-  <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-    {/* Table Header - Hidden on mobile */}
-    <div
-      className="hidden md:flex p-4 bg-gray-50 border-b text-sm font-medium text-gray-500"
-      style={{
-        fontFamily: "'Poppins', -apple-system, Roboto, Helvetica, sans-serif",
-      }}
-    >
-      <div className="flex-1">Date</div>
-      <div className="flex-1">Platform</div>
-      <div className="flex-1">Coin</div>
-      <div className="flex-1">Type</div>
-      <div className="flex-1">Amount</div>
-      <div className="flex-1">Value (NGN)</div>
-      <div className="flex-1">Status</div>
-    </div>
-
-
-              
+            {/* Table Wrapper */}
+            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+              {/* Table Header - Hidden on mobile */}
+              <div
+                className="hidden md:flex p-4 bg-gray-50 border-b text-sm font-medium text-gray-500"
+                style={{
+                  fontFamily:
+                    "'Poppins', -apple-system, Roboto, Helvetica, sans-serif",
+                }}
+              >
+                <div className="flex-1">Date</div>
+                <div className="flex-1">Platform</div>
+                <div className="flex-1">Coin</div>
+                <div className="flex-1">Type</div>
+                <div className="flex-1">Amount</div>
+                <div className="flex-1">Value (NGN)</div>
+                <div className="flex-1">Status</div>
+              </div>
 
               {/* Table Rows */}
               <div className="divide-y divide-gray-100">
@@ -533,23 +438,22 @@ const iconMap: { [key: string]: React.ReactNode } = {
             </div>
           </div>
         </main>
-<ExchangeCoinModal
-  isOpen={isModalOpen}
-  onClose={() => setIsModalOpen(false)}
-  coinSymbol={modalData?.symbol || ""}
-  totalCoin={modalData?.total || 0}
-  currentRate={modalData?.rate || 0}
-  onExecute={({ capitalCoin, rateOption, rate }) => {
-    console.log("Sell request sent:", {
-      symbol: modalData?.symbol,
-      capitalCoin,
-      rateOption,
-      rate,
-    });
-    // TODO: Add API call here
-  }}
-/>
-
+        <ExchangeCoinModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          coinSymbol={modalData?.symbol || ""}
+          totalCoin={modalData?.total || 0}
+          currentRate={modalData?.rate || 0}
+          onExecute={({ capitalCoin, rateOption, rate }) => {
+            console.log("Sell request sent:", {
+              symbol: modalData?.symbol,
+              capitalCoin,
+              rateOption,
+              rate,
+            });
+            // TODO: Add API call here
+          }}
+        />
       </div>
     </div>
   );
