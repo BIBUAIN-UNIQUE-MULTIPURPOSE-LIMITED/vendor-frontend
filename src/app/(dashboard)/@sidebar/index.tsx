@@ -33,7 +33,7 @@ export function SideBar() {
   const sidebar = useSidebar();
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar theme="var(--chart-5)" collapsible="icon">
       <SidebarHeader>
         <SidebarMenuButton
           asChild

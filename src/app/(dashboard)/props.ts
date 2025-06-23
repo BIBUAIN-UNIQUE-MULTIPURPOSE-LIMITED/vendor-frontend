@@ -1,5 +1,7 @@
+import { KPI } from "./@kpi";
+import { Shift } from "./@shift";
 import { Profile } from "./@profile";
-import { Metrics } from "./@metrics";
+import { Attendance } from "./@attendance";
 
 export type Tab = {
   name: string;
@@ -13,14 +15,14 @@ export const tabs: Tab[] = [
   },
   {
     name: "KPI metrics",
-    Component: Metrics,
+    Component: KPI,
   },
   {
     name: "attendance & history",
-    Component: Profile,
+    Component: Attendance,
   },
   {
     name: "shift report",
-    Component: Profile,
+    Component: Shift,
   },
 ];

@@ -5,11 +5,13 @@ import { Header } from "./@header";
 import { SideBar } from "./@sidebar";
 
 interface LayoutProps {
+  kpi: React.ReactNode;
+  shift: React.ReactNode;
   header: React.ReactNode;
-  metrics: React.ReactNode;
   profile: React.ReactNode;
   sidebar: React.ReactNode;
   children: React.ReactNode;
+  attendance: React.ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {

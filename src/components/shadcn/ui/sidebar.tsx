@@ -62,14 +62,12 @@ function SidebarProvider({
   className,
   style,
   width,
-  theme,
   children,
   ...props
 }: React.ComponentProps<"div"> & {
   open?: boolean;
   defaultOpen?: boolean;
   width?: React.CSSProperties["width"];
-  theme?: React.CSSProperties["backgroundColor"];
   onOpenChange?: (open: boolean) => void;
 }) {
   const isMobile = useIsMobile();
@@ -139,7 +137,6 @@ function SidebarProvider({
           data-slot="sidebar-wrapper"
           style={
             {
-              "--sidebar": theme || SIDEBAR_THEME,
               "--sidebar-width": width || SIDEBAR_WIDTH,
               "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
               ...style,
@@ -164,11 +161,13 @@ function Sidebar({
   collapsible = "offcanvas",
   className,
   children,
+  theme,
   ...props
 }: React.ComponentProps<"div"> & {
   side?: "left" | "right";
   variant?: "sidebar" | "floating" | "inset";
   collapsible?: "offcanvas" | "icon" | "none";
+  theme?: React.CSSProperties["backgroundColor"];
 }) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
 
@@ -220,6 +219,11 @@ function Sidebar({
       data-variant={variant}
       data-side={side}
       data-slot="sidebar"
+      style={
+        {
+          "--sidebar": theme || SIDEBAR_THEME,
+        } as React.CSSProperties
+      }
     >
       {/* This is what handles the sidebar gap on desktop */}
       <div

@@ -11,11 +11,11 @@ export function Summary() {
     <Card>
       <CardHeader className="gap-0">
         <CardTitle className="text-xl font-semibold">
-          <span className="capitalize">summary metrics</span>
+          <span className="capitalize">team summary</span>
         </CardTitle>
         <CardDescription className="text-base">
           <span className="sentence">
-            overview of key performance indicators for your dashboard.
+            overview of team shift for the current month.
           </span>
         </CardDescription>
       </CardHeader>
@@ -43,11 +43,11 @@ export function Summary() {
                     <h3 className="text-xl font-semibold">
                       <span className="capitalize">{props.amount}</span>
                     </h3>
-                    <h3 className="text-sm font-semibold">
+                    <p className="text-sm font-semibold">
                       <span className="sentence text-muted-foreground">
                         {props.subtitle}
                       </span>
-                    </h3>
+                    </p>
                   </CardContent>
                 </Card>
               </div>

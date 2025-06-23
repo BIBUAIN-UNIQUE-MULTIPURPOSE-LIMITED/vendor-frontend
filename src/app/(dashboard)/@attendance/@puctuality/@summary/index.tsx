@@ -5,17 +5,19 @@ import { Card, CardHeader, CardTitle } from "@/components/shadcn/ui/card";
 import { CardContent, CardDescription } from "@/components/shadcn/ui/card";
 
 import { metrics } from "./props";
+import { Button } from "@/components/shadcn/ui/button";
+import { Circle } from "lucide-react";
 
 export function Summary() {
   return (
     <Card>
       <CardHeader className="gap-0">
         <CardTitle className="text-xl font-semibold">
-          <span className="capitalize">summary metrics</span>
+          <span className="capitalize">punctuality summary</span>
         </CardTitle>
         <CardDescription className="text-base">
           <span className="sentence">
-            overview of key performance indicators for your dashboard.
+            overview of punctuality metrics and statistics
           </span>
         </CardDescription>
       </CardHeader>
@@ -40,14 +42,23 @@ export function Summary() {
                     </div>
                   </CardHeader>
                   <CardContent className="px-3 block">
-                    <h3 className="text-xl font-semibold">
+                    <h3 className="mb-1 text-xl font-semibold">
                       <span className="capitalize">{props.amount}</span>
                     </h3>
-                    <h3 className="text-sm font-semibold">
-                      <span className="sentence text-muted-foreground">
-                        {props.subtitle}
-                      </span>
-                    </h3>
+                    <Button
+                      disabled
+                      variant="ghost"
+                      className="!p-0 h-auto bg-transparent disabled:opacity-100"
+                    >
+                      <Circle
+                        className={`stroke-none fill-[var(${props.colorVar})]`}
+                      />
+                      <h3 className="text-sm font-semibold">
+                        <span className="sentence text-muted-foreground">
+                          {props.subtitle}
+                        </span>
+                      </h3>
+                    </Button>
                   </CardContent>
                 </Card>
               </div>

@@ -15,7 +15,7 @@ export function Performance() {
         <CardTitle className="text-xl font-semibold">
           <span className="capitalize">performance metrics</span>
         </CardTitle>
-        <CardDescription>
+        <CardDescription className="text-base">
           <span className="sentence">key performance metrics</span>
         </CardDescription>
       </CardHeader>

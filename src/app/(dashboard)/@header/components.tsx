@@ -20,6 +20,7 @@ import {
 } from "@/components/shadcn/ui/dropdown-menu";
 
 import { useHeader } from "./context";
+import React, { useEffect } from "react";
 
 export function Timer(props: React.ComponentProps<typeof Button>) {
   const [time, control] = useHeader();
@@ -50,7 +51,7 @@ export function Timer(props: React.ComponentProps<typeof Button>) {
 export function Break(props: React.ComponentProps<typeof Button>) {
   const [, control] = useHeader();
 
-  function onBreak(event: React.MouseEvent<HTMLButtonElement>) {
+  function takeBreak(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
 
     if (control.isRunning) {
@@ -60,22 +61,46 @@ export function Break(props: React.ComponentProps<typeof Button>) {
     }
   }
 
+  if (control.clockedOut) {
+    return;
+  }
+
   return (
-    <Button {...props} onClick={onBreak}>
+    <Button {...props} onClick={takeBreak}>
       <CirclePause />
       <p className="text-xs font-semibold">
-        <span className="capitalize">take break</span>
+        <span className="capitalize">
+          {control.isRunning ? "take break" : "end break"}
+        </span>
       </p>
     </Button>
   );
 }
 
 export function ClockOut(props: React.ComponentProps<typeof Button>) {
+  const [, control] = useHeader();
+
+  function clockOut(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+
+    control.toggleClockedOut();
+  }
+
+  useEffect(() => {
+    if (control.clockedOut) {
+      control.reset();
+    } else {
+      control.start();
+    }
+  }, [control]);
+
   return (
-    <Button {...props}>
+    <Button {...props} onClick={clockOut}>
       <AlarmClockOff />
       <p className="text-xs font-semibold">
-        <span className="capitalize">clock out</span>
+        <span className="capitalize">
+          clock {control.clockedOut ? "in" : "out"}
+        </span>
       </p>
     </Button>
   );
