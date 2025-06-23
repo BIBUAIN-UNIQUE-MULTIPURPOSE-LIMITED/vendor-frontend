@@ -5,27 +5,20 @@ import Link from "next/link";
 import { Fragment, useMemo } from "react";
 import { DynamicIcon } from "lucide-react/dynamic";
 
-import {
-  useSidebar,
-  SidebarGroupContent,
-} from "@/components/shadcn/ui/sidebar";
-import {
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-} from "@/components/shadcn/ui/avatar";
+import { useSidebar, SidebarGroupContent } from "@/components/ui/sidebar";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
   SidebarMenu,
   SidebarGroup,
   SidebarFooter,
   SidebarMenuItem,
-} from "@/components/shadcn/ui/sidebar";
+} from "@/components/ui/sidebar";
 import {
   Sidebar,
   SidebarHeader,
   SidebarContent,
   SidebarMenuButton,
-} from "@/components/shadcn/ui/sidebar";
+} from "@/components/ui/sidebar";
 
 import { routesGroups } from "./props";
 

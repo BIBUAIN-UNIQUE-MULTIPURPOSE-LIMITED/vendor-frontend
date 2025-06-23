@@ -1,11 +1,23 @@
 "use client";
 
-import { SidebarTrigger } from "@/components/shadcn/ui/sidebar";
+import { useEffect } from "react";
+
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 import { HeaderProvider } from "./context";
 import { Break, Timer, ClockOut, MiniProfile } from "./components";
 
 export function Header() {
+  useEffect(function () {
+    const onBeforeUnload = (event: BeforeUnloadEvent) => event.preventDefault();
+
+    window.addEventListener("beforeunload", onBeforeUnload);
+
+    return function () {
+      window.removeEventListener("beforeunload", onBeforeUnload);
+    };
+  }, []);
+
   return (
     <HeaderProvider>
       <header className="z-5 top-0 left-0 sticky border-b backdrop-blur bg-background/50 @container/header">

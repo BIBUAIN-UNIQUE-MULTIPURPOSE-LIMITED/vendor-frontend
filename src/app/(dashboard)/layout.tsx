@@ -1,5 +1,5 @@
-import { SidebarInset } from "@/components/shadcn/ui/sidebar";
-import { SidebarProvider } from "@/components/shadcn/ui/sidebar";
+import { SidebarInset } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 import { Header } from "./@header";
 import { SideBar } from "./@sidebar";

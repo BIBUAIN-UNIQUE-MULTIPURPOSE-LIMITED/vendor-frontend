@@ -1,29 +1,31 @@
 "use client";
 
+import Link from "next/link";
+
 import { User, Settings, AlarmClock, LogOut } from "lucide-react";
 import { CircleUser, CirclePause, AlarmClockOff } from "lucide-react";
 
-import { Button } from "@/components/shadcn/ui/button";
-import { AvatarFallback } from "@/components/shadcn/ui/avatar";
-import { Avatar, AvatarImage } from "@/components/shadcn/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
-} from "@/components/shadcn/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import {
-  DropdownMenuGroup,
   DropdownMenuItem,
-} from "@/components/shadcn/ui/dropdown-menu";
+  DropdownMenuGroup,
+} from "@/components/ui/dropdown-menu";
 import {
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/shadcn/ui/dropdown-menu";
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 
 import { useHeader } from "./context";
-import React, { useEffect } from "react";
+import { useMemo } from "react";
 
 export function Timer(props: React.ComponentProps<typeof Button>) {
-  const [time, control] = useHeader();
+  const [time, states] = useHeader();
 
   const secs = time % 60;
   const hours = Math.floor(time / 3600);
@@ -32,11 +34,16 @@ export function Timer(props: React.ComponentProps<typeof Button>) {
   return (
     <Button
       {...props}
-      className={
-        !control.isRunning
-          ? "animated animate-pulse animation-duration-[1s]"
-          : ""
-      }
+      className={useMemo(
+        function () {
+          if (states.running || states.running === null) {
+            return "";
+          }
+
+          return "animated animate-pulse animation-duration-[1s]";
+        },
+        [states.running],
+      )}
     >
       <AlarmClock />
       <p className="text-xs font-semibold">
@@ -49,28 +56,32 @@ export function Timer(props: React.ComponentProps<typeof Button>) {
 }
 
 export function Break(props: React.ComponentProps<typeof Button>) {
-  const [, control] = useHeader();
+  const [, states, control] = useHeader();
+
+  const disabled = useMemo(() => {
+    if (states.clockedIn === null) {
+      return !states.running;
+    }
+
+    return !states.clockedIn;
+  }, [states.clockedIn, states.running]);
 
   function takeBreak(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
 
-    if (control.isRunning) {
+    if (states.running) {
       control.pause();
     } else {
       control.resume();
     }
   }
 
-  if (control.clockedOut) {
-    return;
-  }
-
   return (
-    <Button {...props} onClick={takeBreak}>
+    <Button {...props} disabled={disabled} onClick={takeBreak}>
       <CirclePause />
       <p className="text-xs font-semibold">
         <span className="capitalize">
-          {control.isRunning ? "take break" : "end break"}
+          {states.running ? "take break" : "end break"}
         </span>
       </p>
     </Button>
@@ -78,28 +89,28 @@ export function Break(props: React.ComponentProps<typeof Button>) {
 }
 
 export function ClockOut(props: React.ComponentProps<typeof Button>) {
-  const [, control] = useHeader();
+  const [, states, control] = useHeader();
 
   function clockOut(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
 
-    control.toggleClockedOut();
-  }
-
-  useEffect(() => {
-    if (control.clockedOut) {
+    if (states.clockedIn) {
       control.reset();
     } else {
       control.start();
     }
-  }, [control]);
+  }
 
   return (
-    <Button {...props} onClick={clockOut}>
+    <Button
+      {...props}
+      variant={states.clockedIn ? "destructive" : "default"}
+      onClick={clockOut}
+    >
       <AlarmClockOff />
       <p className="text-xs font-semibold">
         <span className="capitalize">
-          clock {control.clockedOut ? "in" : "out"}
+          clock {states.clockedIn ? "out" : "in"}
         </span>
       </p>
     </Button>
@@ -158,11 +169,13 @@ export function MiniProfile() {
             </div>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <CircleUser />
-            <p className="text-sm font-semibold">
-              <span className="one-line capitalize">team lead</span>
-            </p>
+          <DropdownMenuItem asChild>
+            <Link href="/profile/team-lead">
+              <CircleUser />
+              <p className="text-sm font-semibold">
+                <span className="one-line capitalize">team lead</span>
+              </p>
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Settings />

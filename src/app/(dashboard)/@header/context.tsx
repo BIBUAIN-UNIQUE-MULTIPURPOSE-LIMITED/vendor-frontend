@@ -1,56 +1,40 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { useContext, createContext, ReactNode } from "react";
 
-import { useTimer } from "@/components/custom/hooks/timer";
-import { TimerControl, ElapsedTime } from "@/components/custom/hooks/timer";
+import { useTimer, UseTimer } from "@/hooks/timer";
 
-interface HeaderProviderProps {
-  children: React.ReactNode;
-}
-
-type UseHeader = [
-  ElapsedTime,
-  TimerControl & {
-    clockedOut: boolean;
-    toggleClockedOut: () => void;
-  },
-];
-
-const HeaderContext = createContext<UseHeader>([
+const HeaderContext = createContext<UseTimer>([
   0,
   {
-    isRunning: false,
-    clockedOut: false,
-
-    start: () => {},
-    reset: () => {},
-    pause: () => {},
-    resume: () => {},
-    toggleClockedOut: () => {},
+    running: false,
+    clockedIn: false,
+  },
+  {
+    start: () => {
+      throw new Error("`start` called outside of `HeaderProvider`");
+    },
+    reset: () => {
+      throw new Error("`reset` called outside of `HeaderProvider`");
+    },
+    pause: () => {
+      throw new Error("`pause` called outside of `HeaderProvider`");
+    },
+    resume: () => {
+      throw new Error("`resume` called outside of `HeaderProvider`");
+    },
   },
 ]);
 
-export function HeaderProvider({ children }: HeaderProviderProps) {
-  const [time, control] = useTimer();
+interface HeaderProviderProps {
+  children: ReactNode;
+}
 
-  const [clockedOut, setClockedOut] = useState<boolean>(false);
+export function HeaderProvider({ children }: HeaderProviderProps) {
+  const timer = useTimer();
 
   return (
-    <HeaderContext.Provider
-      value={[
-        time,
-        {
-          ...control,
-          clockedOut,
-          toggleClockedOut: function () {
-            setClockedOut((clockedOut) => !clockedOut);
-          },
-        },
-      ]}
-    >
-      {children}
-    </HeaderContext.Provider>
+    <HeaderContext.Provider value={timer}>{children}</HeaderContext.Provider>
   );
 }
 
