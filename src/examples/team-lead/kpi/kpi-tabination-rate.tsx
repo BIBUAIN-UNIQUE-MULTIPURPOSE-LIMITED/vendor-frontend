@@ -1,6 +1,7 @@
 export type RateDatum = {
   title: string;
 
+  color?: string;
   total?: number | React.ReactNode;
   currency?: string;
   breakdown?: Array<{

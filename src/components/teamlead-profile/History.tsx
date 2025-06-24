@@ -304,7 +304,7 @@ export function HistoryPunctualityHistory() {
                           <Badge
                             className={`text-xs font-semibold ${props.tag.color}`}
                           >
-                            <span className="sentence text-gray-400">
+                            <span className={`sentence ${props.tag.text}`}>
                               {props.tag.name}
                             </span>
                           </Badge>
@@ -317,7 +317,7 @@ export function HistoryPunctualityHistory() {
             ))}
           </CardContent>
           <CardFooter className="block text-center">
-            <Button size="lg" variant="outline" className="rounded-full">
+            <Button size="lg" variant="link" className="rounded-full">
               <Loader className="hidden animated animate-spin" />
               <p className="text-sm font-semibold">
                 <span className="capitalize">load more records</span>

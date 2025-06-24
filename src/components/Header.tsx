@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useContext, createContext, ReactNode } from "react";
+import { useContext, createContext, ReactNode } from "react";
 
 import { useTimer, UseTimer } from "@/hooks/timer";
 import { SidebarTrigger } from "@/components/ui/sidebar";
@@ -50,15 +50,15 @@ function useHeader() {
 }
 
 export function Header() {
-  useEffect(function () {
-    const onBeforeUnload = (event: BeforeUnloadEvent) => event.preventDefault();
+  // useEffect(function () {
+  //   const onBeforeUnload = (event: BeforeUnloadEvent) => event.preventDefault();
 
-    window.addEventListener("beforeunload", onBeforeUnload);
+  //   window.addEventListener("beforeunload", onBeforeUnload);
 
-    return function () {
-      window.removeEventListener("beforeunload", onBeforeUnload);
-    };
-  }, []);
+  //   return function () {
+  //     window.removeEventListener("beforeunload", onBeforeUnload);
+  //   };
+  // }, []);
 
   return (
     <HeaderProvider>
@@ -214,7 +214,7 @@ export function ClockOut(props: React.ComponentProps<typeof Button>) {
       variant={states.clockedIn ? "destructive" : "default"}
       onClick={clockOut}
     >
-      <AlarmClockOff />
+      {states.clockedIn ? <AlarmClockOff /> : <AlarmClock />}
       <p className="text-xs font-semibold">
         <span className="capitalize">
           clock {states.clockedIn ? "out" : "in"}

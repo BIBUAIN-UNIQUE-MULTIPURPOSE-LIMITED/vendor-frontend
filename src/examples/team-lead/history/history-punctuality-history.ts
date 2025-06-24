@@ -4,6 +4,7 @@ export type Metric = {
   timeOut: string;
   tag: {
     name: string;
+    text: string;
     color: string;
   };
 };
@@ -16,6 +17,7 @@ export const hphMetrics: Metric[] = [
     tag: {
       name: "on-time",
       color: "bg-black",
+      text: "!text-white",
     },
   },
   {
@@ -25,6 +27,7 @@ export const hphMetrics: Metric[] = [
     tag: {
       name: "late",
       color: "bg-destructive",
+      text: "!text-white",
     },
   },
   {
@@ -34,6 +37,7 @@ export const hphMetrics: Metric[] = [
     tag: {
       name: "early",
       color: "bg-muted",
+      text: "!text-muted-foreground",
     },
   },
   {
@@ -43,6 +47,7 @@ export const hphMetrics: Metric[] = [
     tag: {
       name: "on-time",
       color: "bg-black",
+      text: "!text-white",
     },
   },
   {
@@ -52,6 +57,7 @@ export const hphMetrics: Metric[] = [
     tag: {
       name: "late",
       color: "bg-destructive",
+      text: "!text-white",
     },
   },
 ];

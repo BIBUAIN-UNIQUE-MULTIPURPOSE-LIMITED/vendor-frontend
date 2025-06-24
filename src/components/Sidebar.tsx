@@ -53,7 +53,7 @@ export function SideBar() {
                 }
 
                 return (
-                  <Avatar>
+                  <Avatar className="size">
                     <AvatarFallback>B</AvatarFallback>
                     <AvatarImage
                       alt="Favicon"
@@ -153,8 +153,18 @@ export const routesGroups: RouteGroups = {
       iconName: "landmark",
     },
     {
-      name: "rate management",
-      href: "/rate-management",
+      name: "transaction history",
+      href: "/transaction-history",
+      iconName: "receipt-text",
+    },
+    {
+      name: "rate setings",
+      href: "/rate-setings",
+      iconName: "receipt-text",
+    },
+    {
+      name: "rate analysis",
+      href: "/rate-analysis",
       iconName: "receipt-text",
     },
     {
@@ -162,10 +172,10 @@ export const routesGroups: RouteGroups = {
       href: "/inbox",
       iconName: "inbox",
     },
-    {
-      name: "settings",
-      href: "/settings",
-      iconName: "settings",
-    },
+    // {
+    //   name: "settings",
+    //   href: "/settings",
+    //   iconName: "settings",
+    // },
   ],
 };

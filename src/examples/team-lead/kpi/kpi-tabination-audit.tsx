@@ -1,6 +1,7 @@
 export type Datum = {
   title: string;
 
+  color?: string;
   total?: number | React.ReactNode;
   currency?: string;
   breakdown?: Array<{

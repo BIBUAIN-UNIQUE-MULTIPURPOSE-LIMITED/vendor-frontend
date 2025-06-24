@@ -21,15 +21,19 @@ export const summaryMetrics: SummaryMetrics[] = [
     iconName: "info",
   },
   {
-    amount: "1",
+    amount: "94%",
     title: "declared vs accurate",
     subtitle: "accurate rate",
     iconName: "check-circle",
   },
   {
-    amount: "#12,500",
     title: "binance charges",
     subtitle: "good record",
     iconName: "circle-dollar-sign",
+    amount: Number("12500").toLocaleString("en-NG", {
+      currency: "NGN",
+      style: "currency",
+      maximumFractionDigits: 0,
+    }),
   },
 ];

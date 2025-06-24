@@ -21,54 +21,42 @@ import { metrics } from "@/examples/team-lead/kpi/kpi-summary";
 
 export function KPISummary() {
   return (
-    <Card>
-      <CardHeader className="gap-0">
-        <CardTitle className="text-xl font-semibold">
-          <span className="capitalize">summary metrics</span>
-        </CardTitle>
-        <CardDescription className="text-base">
-          <span className="sentence">
-            overview of key performance indicators for your dashboard.
-          </span>
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="@container/grid">
-        <div className="grid gap-5 grid-cols-12">
-          {metrics.map((props, index) => (
-            <Fragment key={index}>
-              <div className="col-span-12 @xl/grid:col-span-6 @3xl/grid:col-span-4 @5xl/grid:col-span-3">
-                <Card className="py-3">
-                  <CardHeader className="px-3 block">
-                    <div className="flex gap-3 items-center justify-between">
-                      <div className="flex-1">
-                        <p className="text-sm font-semibold">
-                          <span className="one-line capitalize">
-                            {props.title}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="flex-none">
-                        <DynamicIcon size={18} name={props.iconName} />
-                      </div>
+    <div className="@container/grid mt-5">
+      <div className="grid gap-5 grid-cols-12">
+        {metrics.map((props, index) => (
+          <Fragment key={index}>
+            <div className="col-span-12 @xl/grid:col-span-6 @3xl/grid:col-span-4 @5xl/grid:col-span-3">
+              <Card className="py-3">
+                <CardHeader className="px-3 block">
+                  <div className="flex gap-3 items-center justify-between">
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold">
+                        <span className="one-line capitalize">
+                          {props.title}
+                        </span>
+                      </p>
                     </div>
-                  </CardHeader>
-                  <CardContent className="px-3 block">
-                    <h3 className="text-xl font-semibold">
-                      <span className="capitalize">{props.amount}</span>
-                    </h3>
-                    <p className="text-sm font-semibold">
-                      <span className="sentence text-muted-foreground">
-                        {props.subtitle}
-                      </span>
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </Fragment>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+                    <div className="flex-none">
+                      <DynamicIcon size={18} name={props.iconName} />
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="px-3 block">
+                  <h3 className="text-xl font-semibold">
+                    <span className="capitalize">{props.amount}</span>
+                  </h3>
+                  <p className="text-sm font-semibold">
+                    <span className="sentence text-muted-foreground">
+                      {props.subtitle}
+                    </span>
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </Fragment>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -148,6 +136,7 @@ export function KPITabinationAudit() {
               ))}
               <KPITabinationAuditComponentsRateBreakDown
                 title="balance status"
+                color="!bg-green-100"
                 total={
                   <Badge
                     variant="secondary"
@@ -167,12 +156,9 @@ export function KPITabinationAudit() {
 }
 
 import { useMemo } from "react";
-import { ChevronsUpDown } from "lucide-react";
 
-import { CollapsibleContent } from "@/components/ui/collapsible";
 import { Table, TableRow, TableHeader } from "@/components/ui/table";
 import { TableBody, TableCell, TableHead } from "@/components/ui/table";
-import { Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 import { Datum, Profit } from "@/examples/team-lead/kpi/kpi-tabination-audit";
 
@@ -183,6 +169,7 @@ interface ProfitTableProps {
 export function KPITabinationAuditComponentsRateBreakDown({
   title,
   total,
+  color,
   currency,
   breakdown,
 }: Datum) {
@@ -198,11 +185,11 @@ export function KPITabinationAuditComponentsRateBreakDown({
     }, 0);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <Button
         disabled
         variant="outline"
-        className="py-3 h-auto w-full text-left disabled:opacity-100"
+        className={`py-3 h-auto w-full text-left ${color} disabled:opacity-100`}
       >
         <div className="flex-1">
           <h5 className="text-sm font-bold one-line">
@@ -210,61 +197,66 @@ export function KPITabinationAuditComponentsRateBreakDown({
           </h5>
         </div>
         <div className="flex-none">
-          {useMemo(() => {
-            if (typeof grandTotal === "number") {
-              return (
-                <p className="text-sm font-bold">
-                  <span className="capitalize">
-                    {Number(grandTotal).toLocaleString("en-NG", {
-                      currency,
-                      style: "currency",
-                    })}
-                  </span>
-                </p>
-              );
-            }
+          {useMemo(
+            function () {
+              if (typeof grandTotal === "number") {
+                return (
+                  <p className="text-sm font-bold">
+                    <span className="capitalize">
+                      {Number(grandTotal).toLocaleString("en-NG", {
+                        currency,
+                        style: "currency",
+                      })}
+                    </span>
+                  </p>
+                );
+              }
 
-            return grandTotal;
-          }, [currency, grandTotal])}
+              return grandTotal;
+            },
+            [currency, grandTotal],
+          )}
         </div>
       </Button>
       {breakdown?.map(({ name, transactions }, index) => (
         <Fragment key={index}>
-          <Collapsible>
-            <CollapsibleTrigger asChild className="w-full">
-              <Button size="lg" variant="ghost" className="justify-start">
-                <ChevronsUpDown />
-                <p className="text-sm font-bold">
-                  <span className="capitalize">{name}</span>
-                </p>
-              </Button>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="pl-3 mt-3 ml-5 border-l-3">
+          <details>
+            <summary>
+              <p className="text-sm font-bold inline-block cursor-pointer">
+                <span className="capitalize">{name}</span>
+              </p>
+            </summary>
+            <div className="mt-3 space-y-2 border-l-3 border-chart-4">
               {transactions.map(({ desc, amount }, index) => (
                 <Fragment key={index}>
                   <Button
+                    disabled
                     size="lg"
-                    variant="ghost"
-                    className="w-full justify-between"
+                    variant="secondary"
+                    className="w-full justify-between rounded-l-none disabled:opacity-100"
                   >
                     <h5 className="text-sm font-semibold">
                       <span className="sentence text-muted-foreground">
                         {desc}
                       </span>
                     </h5>
-                    <p className="text-sm font-bold">
-                      <span className="sentence">
-                        {Number(amount).toLocaleString("en-NG", {
-                          currency,
-                          style: "currency",
-                        })}
-                      </span>
-                    </p>
+                    {typeof amount === "number" ? (
+                      <p className="text-sm font-bold">
+                        <span className="sentence">
+                          {Number(amount).toLocaleString("en-NG", {
+                            currency,
+                            style: "currency",
+                          })}
+                        </span>
+                      </p>
+                    ) : (
+                      amount
+                    )}
                   </Button>
                 </Fragment>
               ))}
-            </CollapsibleContent>
-          </Collapsible>
+            </div>
+          </details>
         </Fragment>
       ))}
     </div>
@@ -338,15 +330,25 @@ import { coinData } from "@/examples/team-lead/kpi/kpi-tabination-coin";
 export function KPITabinationCoin() {
   return (
     <Card>
-      <CardHeader className="gap-0">
-        <CardTitle className="text-xl font-semibold">
-          <span className="capitalize">coin exchange</span>
-        </CardTitle>
-        <CardDescription className="text-base">
-          <span className="sentence">
-            comprehensive rate analysis and financial metrics
-          </span>
-        </CardDescription>
+      <CardHeader className="flex gap-0 items-center justify-between">
+        <div className="flex-none">
+          <CardTitle className="text-xl font-semibold">
+            <span className="capitalize">coin exchange</span>
+          </CardTitle>
+          <CardDescription className="text-base">
+            <span className="sentence">
+              comprehensive rate analysis and financial metrics
+            </span>
+          </CardDescription>
+        </div>
+        <div className="flex-none">
+          <Badge
+            variant="secondary"
+            className="text-sm font-semibold text-green-600 bg-green-600/20"
+          >
+            <span className="capitalize">cap coin - 3.2 BTC</span>
+          </Badge>
+        </div>
       </CardHeader>
       <CardContent className="@container/card">
         <Card>
@@ -358,6 +360,7 @@ export function KPITabinationCoin() {
             ))}
             <KPITabinationCoinComponentsRateBreakDown
               currency="NGN"
+              color="!bg-green-100"
               title="closing excess coin"
               total={
                 <p className="text-base font-bold">
@@ -381,6 +384,7 @@ import { CoinDatum } from "@/examples/team-lead/kpi/kpi-tabination-coin";
 export function KPITabinationCoinComponentsRateBreakDown({
   title,
   total,
+  color,
   currency,
   breakdown,
 }: CoinDatum) {
@@ -396,11 +400,11 @@ export function KPITabinationCoinComponentsRateBreakDown({
     }, 0);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <Button
         disabled
         variant="outline"
-        className="py-3 h-auto w-full text-left disabled:opacity-100"
+        className={`py-3 h-auto w-full text-left ${color} disabled:opacity-100`}
       >
         <div className="flex-1">
           <h5 className="text-sm font-bold one-line">
@@ -411,10 +415,16 @@ export function KPITabinationCoinComponentsRateBreakDown({
           {useMemo(
             function () {
               if (typeof grandTotal === "number") {
-                return Number(grandTotal).toLocaleString("en-NG", {
-                  currency,
-                  style: "currency",
-                });
+                return (
+                  <p className="text-sm font-bold">
+                    <span className="capitalize">
+                      {Number(grandTotal).toLocaleString("en-NG", {
+                        currency,
+                        style: "currency",
+                      })}
+                    </span>
+                  </p>
+                );
               }
 
               return grandTotal;
@@ -425,45 +435,43 @@ export function KPITabinationCoinComponentsRateBreakDown({
       </Button>
       {breakdown?.map(({ name, transactions }, index) => (
         <Fragment key={index}>
-          <Collapsible>
-            <CollapsibleTrigger asChild className="w-full">
-              <Button size="lg" variant="ghost" className="justify-start">
-                <ChevronsUpDown />
-                <p className="text-sm font-bold">
-                  <span className="capitalize">{name}</span>
-                </p>
-              </Button>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="pl-3 mt-3 ml-5 border-l-3">
-              {transactions.map(({ desc, color, amount }, index) => {
-                return (
-                  <Fragment key={index}>
-                    <Button
-                      size="lg"
-                      variant="ghost"
-                      className="w-full justify-between"
-                    >
-                      <h5 className="text-sm font-semibold">
-                        <span className="sentence text-muted-foreground">
-                          {desc}
-                        </span>
-                      </h5>
+          <details>
+            <summary>
+              <p className="text-sm font-bold inline-block cursor-pointer">
+                <span className="capitalize">{name}</span>
+              </p>
+            </summary>
+            <div className="mt-3 space-y-2 border-l-3 border-chart-4">
+              {transactions.map(({ desc, color, amount }, index) => (
+                <Fragment key={index}>
+                  <Button
+                    disabled
+                    size="lg"
+                    variant="secondary"
+                    className="w-full justify-between rounded-l-none disabled:opacity-100"
+                  >
+                    <h5 className="text-sm font-semibold">
+                      <span className="sentence text-muted-foreground">
+                        {desc}
+                      </span>
+                    </h5>
+                    {typeof amount === "number" ? (
                       <p className="text-sm font-bold">
                         <span className={cn("sentence", color || "")}>
-                          {typeof amount === "number"
-                            ? Number(amount).toLocaleString("en-NG", {
-                                currency,
-                                style: "currency",
-                              })
-                            : amount}
+                          {Number(amount).toLocaleString("en-NG", {
+                            currency,
+                            style: "currency",
+                          })}
                         </span>
                       </p>
-                    </Button>
-                  </Fragment>
-                );
-              })}
-            </CollapsibleContent>
-          </Collapsible>
+                    ) : (
+                      amount
+                    )}
+                  </Button>
+                </Fragment>
+              ))}
+            </div>
+          </details>
         </Fragment>
       ))}
     </div>
@@ -490,7 +498,7 @@ export function KPITabinationProfit() {
       <CardContent className="@container/card">
         <Card>
           <CardContent className="space-y-5">
-            {data.map((props, index) => (
+            {profitData.map((props, index) => (
               <Fragment key={index}>
                 <KPITabinationProfitRateBreakDown {...props} />
               </Fragment>
@@ -523,6 +531,7 @@ export function KPITabinationProfit() {
             />
             <KPITabinationProfitRateBreakDown
               title="balance status"
+              color="!bg-green-100"
               total={
                 <Badge
                   variant="secondary"
@@ -541,11 +550,15 @@ export function KPITabinationProfit() {
 
 // KPI Tabination Profit Component
 
-import { ProfitDatum } from "@/examples/team-lead/kpi/kpi-tabination-profit";
+import {
+  profitData,
+  ProfitDatum,
+} from "@/examples/team-lead/kpi/kpi-tabination-profit";
 
 export function KPITabinationProfitRateBreakDown({
   title,
   total,
+  color,
   currency,
   breakdown,
 }: ProfitDatum) {
@@ -561,11 +574,11 @@ export function KPITabinationProfitRateBreakDown({
     }, 0);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <Button
         disabled
         variant="outline"
-        className="py-3 h-auto w-full text-left disabled:opacity-100"
+        className={`py-3 h-auto w-full text-left ${color} disabled:opacity-100`}
       >
         <div className="flex-1">
           <h5 className="text-sm font-bold one-line">
@@ -573,61 +586,66 @@ export function KPITabinationProfitRateBreakDown({
           </h5>
         </div>
         <div className="flex-none">
-          {useMemo(() => {
-            if (typeof grandTotal === "number") {
-              return (
-                <p className="text-sm font-bold">
-                  <span className="capitalize">
-                    {Number(grandTotal).toLocaleString("en-NG", {
-                      currency,
-                      style: "currency",
-                    })}
-                  </span>
-                </p>
-              );
-            }
+          {useMemo(
+            function () {
+              if (typeof grandTotal === "number") {
+                return (
+                  <p className="text-sm font-bold">
+                    <span className="capitalize">
+                      {Number(grandTotal).toLocaleString("en-NG", {
+                        currency,
+                        style: "currency",
+                      })}
+                    </span>
+                  </p>
+                );
+              }
 
-            return grandTotal;
-          }, [currency, grandTotal])}
+              return grandTotal;
+            },
+            [currency, grandTotal],
+          )}
         </div>
       </Button>
       {breakdown?.map(({ name, transactions }, index) => (
         <Fragment key={index}>
-          <Collapsible>
-            <CollapsibleTrigger asChild className="w-full">
-              <Button size="lg" variant="ghost" className="justify-start">
-                <ChevronsUpDown />
-                <p className="text-sm font-bold">
-                  <span className="capitalize">{name}</span>
-                </p>
-              </Button>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="pl-3 mt-3 ml-5 border-l-3">
+          <details>
+            <summary>
+              <p className="text-sm font-bold inline-block cursor-pointer">
+                <span className="capitalize">{name}</span>
+              </p>
+            </summary>
+            <div className="mt-3 space-y-2 border-l-3 border-chart-4">
               {transactions.map(({ desc, amount }, index) => (
                 <Fragment key={index}>
                   <Button
+                    disabled
                     size="lg"
-                    variant="ghost"
-                    className="w-full justify-between"
+                    variant="secondary"
+                    className="w-full justify-between rounded-l-none disabled:opacity-100"
                   >
                     <h5 className="text-sm font-semibold">
                       <span className="sentence text-muted-foreground">
                         {desc}
                       </span>
                     </h5>
-                    <p className="text-sm font-bold">
-                      <span className="sentence">
-                        {Number(amount).toLocaleString("en-NG", {
-                          currency,
-                          style: "currency",
-                        })}
-                      </span>
-                    </p>
+                    {typeof amount === "number" ? (
+                      <p className="text-sm font-bold">
+                        <span className="sentence">
+                          {Number(amount).toLocaleString("en-NG", {
+                            currency,
+                            style: "currency",
+                          })}
+                        </span>
+                      </p>
+                    ) : (
+                      amount
+                    )}
                   </Button>
                 </Fragment>
               ))}
-            </CollapsibleContent>
-          </Collapsible>
+            </div>
+          </details>
         </Fragment>
       ))}
     </div>
@@ -659,6 +677,7 @@ export function KPITabinationRate() {
             ))}
             <KPITabinationRateRateBreakDown
               currency="NGN"
+              color="!bg-blue-100"
               title="closing balance"
               total={
                 <p className="text-base font-bold">
@@ -685,6 +704,7 @@ import { RateDatum } from "@/examples/team-lead/kpi/kpi-tabination-rate";
 export function KPITabinationRateRateBreakDown({
   title,
   total,
+  color,
   currency,
   breakdown,
 }: RateDatum) {
@@ -700,11 +720,11 @@ export function KPITabinationRateRateBreakDown({
     }, 0);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <Button
         disabled
         variant="outline"
-        className="py-3 h-auto w-full text-left disabled:opacity-100"
+        className={`py-3 h-auto w-full text-left ${color} disabled:opacity-100`}
       >
         <div className="flex-1">
           <h5 className="text-sm font-bold one-line">
@@ -735,22 +755,20 @@ export function KPITabinationRateRateBreakDown({
       </Button>
       {breakdown?.map(({ name, transactions }, index) => (
         <Fragment key={index}>
-          <Collapsible>
-            <CollapsibleTrigger asChild className="w-full">
-              <Button size="lg" variant="ghost" className="justify-start">
-                <ChevronsUpDown />
-                <p className="text-sm font-bold">
-                  <span className="capitalize">{name}</span>
-                </p>
-              </Button>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="pl-3 mt-3 ml-5 border-l-3">
+          <details>
+            <summary>
+              <p className="text-sm font-bold inline-block cursor-pointer">
+                <span className="capitalize">{name}</span>
+              </p>
+            </summary>
+            <div className="mt-3 space-y-2 border-l-3 border-chart-4">
               {transactions.map(({ desc, color, amount }, index) => (
                 <Fragment key={index}>
                   <Button
+                    disabled
                     size="lg"
-                    variant="ghost"
-                    className="w-full justify-between"
+                    variant="secondary"
+                    className="w-full justify-between rounded-l-none disabled:opacity-100"
                   >
                     <h5 className="text-sm font-semibold">
                       <span className="sentence text-muted-foreground">
@@ -772,8 +790,8 @@ export function KPITabinationRateRateBreakDown({
                   </Button>
                 </Fragment>
               ))}
-            </CollapsibleContent>
-          </Collapsible>
+            </div>
+          </details>
         </Fragment>
       ))}
     </div>

@@ -22,7 +22,7 @@ export const tabs: Tab[] = [
     Component: KPITabinationProfit,
   },
   {
-    name: "audit",
+    name: "internal audit",
     Component: KPITabinationAudit,
   },
 ];
