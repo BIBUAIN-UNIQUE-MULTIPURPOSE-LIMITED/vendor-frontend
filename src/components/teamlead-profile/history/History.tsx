@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsTrigger } from "@/components/ui/tabs";
 import { TabsContent, TabsList } from "@/components/ui/tabs";
 
-import { tabs } from "@/examples/team-lead/history";
+import { tabs } from "@/examples/team-lead/history/history";
 
 export function History() {
   return (

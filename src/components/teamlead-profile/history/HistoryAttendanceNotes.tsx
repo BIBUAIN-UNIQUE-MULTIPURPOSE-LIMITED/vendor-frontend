@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { CardHeader, CardTitle } from "@/components/ui/card";
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
 
-import { metrics } from "@/examples/team-lead/history-attendance-notes";
+import { metrics } from "@/examples/team-lead/history/history-attendance-notes";
 
 export function Notes() {
   return (

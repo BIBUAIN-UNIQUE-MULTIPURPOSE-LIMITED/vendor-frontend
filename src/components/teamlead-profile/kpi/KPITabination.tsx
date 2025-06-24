@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsTrigger } from "@/components/ui/tabs";
 import { TabsContent, TabsList } from "@/components/ui/tabs";
 
-import { tabs } from "@/examples/team-lead/kpi-tabination";
+import { tabs } from "@/examples/team-lead/kpi/kpi-tabination";
 
 export function Tabination() {
   return (

@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { CardContent, CardDescription } from "@/components/ui/card";
 
-import { metrics } from "@/examples/team-lead/profile-performance";
+import { metrics } from "@/examples/team-lead/profile/profile-performance";
 
 export function Performance() {
   return (

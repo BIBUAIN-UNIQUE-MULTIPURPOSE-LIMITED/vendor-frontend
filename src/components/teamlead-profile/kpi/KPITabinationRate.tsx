@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { CardContent, CardDescription } from "@/components/ui/card";
 
-import { data } from "@/examples/team-lead/kpi-tabination-rate";
+import { data } from "@/examples/team-lead/kpi/kpi-tabination-rate";
 import { RateBreakDown } from "@/components/teamlead-profile/kpi/KPITabinationRateComponents";
 
 export function Rate() {

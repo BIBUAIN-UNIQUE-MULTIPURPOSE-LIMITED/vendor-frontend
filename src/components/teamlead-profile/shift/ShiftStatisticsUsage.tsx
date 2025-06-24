@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { CardHeader, CardTitle } from "@/components/ui/card";
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
 
-import { metrics } from "@/examples/team-lead/shift-statistics-usage";
+import { metrics } from "@/examples/team-lead/shift/shift-statistics-usage";
 
 export function Usages() {
   return (

@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { CollapsibleContent } from "@/components/ui/collapsible";
 import { Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
 
-import { Datum } from "@/examples/team-lead/kpi-tabination-coin";
+import { Datum } from "@/examples/team-lead/kpi/kpi-tabination-coin";
 
 export function RateBreakDown({ title, total, currency, breakdown }: Datum) {
   const grandTotal =

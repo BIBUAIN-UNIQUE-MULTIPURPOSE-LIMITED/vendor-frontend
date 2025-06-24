@@ -4,7 +4,7 @@ import { DynamicIcon } from "lucide-react/dynamic";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { CardContent, CardDescription } from "@/components/ui/card";
 
-import { metrics } from "@/examples/team-lead/kip-summary";
+import { metrics } from "@/examples/team-lead/kpi/kpi-summary";
 
 export function Summary() {
   return (

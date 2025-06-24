@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
 
-import { metrics } from "@/examples/team-lead/history-punctuality-history";
+import { metrics } from "@/examples/team-lead/history/history-punctuality-history";
 
 export function History() {
   return (

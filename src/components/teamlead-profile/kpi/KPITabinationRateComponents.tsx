@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { CollapsibleContent } from "@/components/ui/collapsible";
 import { Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
 
-import { Datum } from "@/examples/team-lead/kpi-tabination-rate";
+import { Datum } from "@/examples/team-lead/kpi/kpi-tabination-rate";
 import { cn } from "@/lib/utils";
 
 export function RateBreakDown({ title, total, currency, breakdown }: Datum) {

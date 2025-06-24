@@ -10,7 +10,7 @@ import { Table, TableRow, TableHeader } from "@/components/ui/table";
 import { TableBody, TableCell, TableHead } from "@/components/ui/table";
 import { Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
 
-import { Datum, Profit } from "@/examples/team-lead/kpi-tabination-audit";
+import { Datum, Profit } from "@/examples/team-lead/kpi/kpi-tabination-audit";
 
 interface ProfitTableProps {
   data: Profit[];

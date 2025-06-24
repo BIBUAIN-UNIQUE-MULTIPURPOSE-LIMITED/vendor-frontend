@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { CardContent, CardDescription } from "@/components/ui/card";
 
-import { data, profits } from "@/examples/team-lead/kpi-tabination-audit";
+import { data, profits } from "@/examples/team-lead/kpi/kpi-tabination-audit";
 import {
   ProfitTable,
   RateBreakDown,
