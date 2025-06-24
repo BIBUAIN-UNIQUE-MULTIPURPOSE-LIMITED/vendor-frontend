@@ -1,6 +1,6 @@
 import { IconName } from "lucide-react/dynamic";
 
-export type Metric = {
+export type PerformanceMetric = {
   color: string;
   title: string;
   target: string;
@@ -8,7 +8,7 @@ export type Metric = {
   iconName: IconName;
 };
 
-export const metrics: Metric[] = [
+export const performanceMetrics: PerformanceMetric[] = [
   {
     progress: "85%",
     target: "target: 100%",

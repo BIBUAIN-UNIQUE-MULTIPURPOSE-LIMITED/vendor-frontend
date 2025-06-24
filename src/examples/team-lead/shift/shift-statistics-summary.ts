@@ -1,13 +1,13 @@
 import { IconName } from "lucide-react/dynamic";
 
-export type Metric = {
+export type SummaryMetrics = {
   title: string;
   amount: string;
   subtitle: string;
   iconName: IconName;
 };
 
-export const metrics: Metric[] = [
+export const summaryMetrics: SummaryMetrics[] = [
   {
     amount: "156",
     title: "total trades",

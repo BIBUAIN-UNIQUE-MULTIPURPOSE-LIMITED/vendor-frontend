@@ -8,7 +8,7 @@ export type Metric = {
   iconName: IconName;
 };
 
-export const metrics: Metric[] = [
+export const summaryMetrics: Metric[] = [
   {
     amount: "18/20",
     title: "days present",

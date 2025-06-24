@@ -8,7 +8,7 @@ export type Metric = {
   };
 };
 
-export const metrics: Metric[] = [
+export const hphMetrics: Metric[] = [
   {
     timeIn: "08:02",
     timeOut: "16:05",

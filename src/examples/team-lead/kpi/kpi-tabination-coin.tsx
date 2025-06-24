@@ -1,4 +1,4 @@
-export type Datum = {
+export type CoinDatum = {
   title: string;
 
   total?: number | React.ReactNode;
@@ -14,7 +14,7 @@ export type Datum = {
   }>;
 };
 
-export const data: Datum[] = [
+export const coinData: CoinDatum[] = [
   {
     currency: "NGN",
     title: "total coin purchased",

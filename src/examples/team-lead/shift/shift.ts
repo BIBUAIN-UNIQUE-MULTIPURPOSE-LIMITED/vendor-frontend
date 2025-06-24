@@ -1,6 +1,6 @@
-import { Flow } from "@/components/teamlead-profile/shift/ShiftFlow";
-import { Report } from "@/components/teamlead-profile/shift/ShiftReport";
-import { Statistics } from "@/components/teamlead-profile/shift/ShiftStatistics";
+import { ShiftFlow } from "@/components/teamlead-profile/Shift";
+import { ShiftReport } from "@/components/teamlead-profile/Shift";
+import { ShiftStatistics } from "@/components/teamlead-profile/Shift";
 
 export type Tab = {
   name: string;
@@ -10,15 +10,15 @@ export type Tab = {
 export const tabs: Tab[] = [
   {
     name: "shift report form",
-    Component: Report,
+    Component: ShiftReport,
   },
   {
     name: "team statistics",
-    Component: Statistics,
+    Component: ShiftStatistics,
   },
   {
     name: "submission flow",
-    Component: Flow,
+    Component: ShiftFlow,
   },
   {
     name: "submit shift report",

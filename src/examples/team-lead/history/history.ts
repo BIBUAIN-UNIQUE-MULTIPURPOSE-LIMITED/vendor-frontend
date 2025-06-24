@@ -1,5 +1,5 @@
-import { Attendance } from "@/components/teamlead-profile/history/HistoryAttendance";
-import { Punctuality } from "@/components/teamlead-profile/history/HistoryPunctuality";
+import { HistoryAttendance } from "@/components/teamlead-profile/History";
+import { HistoryPunctuality } from "@/components/teamlead-profile/History";
 
 export type Tab = {
   name: string;
@@ -9,10 +9,10 @@ export type Tab = {
 export const tabs: Tab[] = [
   {
     name: "punctuality",
-    Component: Punctuality,
+    Component: HistoryPunctuality,
   },
   {
     name: "attendance",
-    Component: Attendance,
+    Component: HistoryAttendance,
   },
 ];

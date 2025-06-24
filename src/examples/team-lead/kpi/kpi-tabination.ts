@@ -1,7 +1,7 @@
-import { Rate } from "@/components/teamlead-profile/kpi/KPITabinationRate";
-import { Coin } from "@/components/teamlead-profile/kpi/KPITabinationCoin";
-import { Audit } from "@/components/teamlead-profile/kpi/KPITabinationAudit";
-import { Profit } from "@/components/teamlead-profile/kpi/KPITabinationProfit";
+import { KPITabinationRate } from "@/components/teamlead-profile/KPI";
+import { KPITabinationCoin } from "@/components/teamlead-profile/KPI";
+import { KPITabinationAudit } from "@/components/teamlead-profile/KPI";
+import { KPITabinationProfit } from "@/components/teamlead-profile/KPI";
 
 export type Tab = {
   name: string;
@@ -11,18 +11,18 @@ export type Tab = {
 export const tabs: Tab[] = [
   {
     name: "rate report",
-    Component: Rate,
+    Component: KPITabinationRate,
   },
   {
     name: "coin exchange",
-    Component: Coin,
+    Component: KPITabinationCoin,
   },
   {
     name: "profit declaration",
-    Component: Profit,
+    Component: KPITabinationProfit,
   },
   {
     name: "audit",
-    Component: Audit,
+    Component: KPITabinationAudit,
   },
 ];

@@ -1,10 +1,10 @@
-export type Metric = {
+export type UsageMetrics = {
   bank: string;
   percentage: string;
   description: string;
 };
 
-export const metrics: Metric[] = [
+export const usageMetrics: UsageMetrics[] = [
   {
     bank: "GTBank",
     percentage: "28.8%",

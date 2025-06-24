@@ -4,7 +4,7 @@ export type Metric = {
   description: string;
 };
 
-export const metrics: Metric[] = [
+export const noteMetrics: Metric[] = [
   {
     date: "jan 20",
     color: "#FEFCE8",
