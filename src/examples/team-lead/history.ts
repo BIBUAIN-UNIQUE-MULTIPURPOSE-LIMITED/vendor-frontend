@@ -1,5 +1,5 @@
-import { Attendance } from "@/components/team-lead/HistoryAttendance";
-import { Punctuality } from "@/components/team-lead/HistoryPunctuality";
+import { Attendance } from "@/components/teamlead-profile/history/HistoryAttendance";
+import { Punctuality } from "@/components/teamlead-profile/history/HistoryPunctuality";
 
 export type Tab = {
   name: string;

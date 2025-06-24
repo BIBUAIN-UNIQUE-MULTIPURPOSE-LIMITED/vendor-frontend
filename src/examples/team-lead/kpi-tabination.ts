@@ -1,7 +1,7 @@
-import { Rate } from "@/components/team-lead/KPITabinationRate";
-import { Coin } from "@/components/team-lead/KPITabinationCoin";
-import { Audit } from "@/components/team-lead/KPITabinationAudit";
-import { Profit } from "@/components/team-lead/KPITabinationProfit";
+import { Rate } from "@/components/teamlead-profile/kpi/KPITabinationRate";
+import { Coin } from "@/components/teamlead-profile/kpi/KPITabinationCoin";
+import { Audit } from "@/components/teamlead-profile/kpi/KPITabinationAudit";
+import { Profit } from "@/components/teamlead-profile/kpi/KPITabinationProfit";
 
 export type Tab = {
   name: string;

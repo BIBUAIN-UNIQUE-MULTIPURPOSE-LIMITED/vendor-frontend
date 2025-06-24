@@ -1,17 +1,11 @@
 import { SidebarInset } from "@/components/ui/sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
-import { Header } from "./@header";
-import { SideBar } from "./@sidebar";
+import { Header } from "@/components/Header";
+import { SideBar } from "@/components/Sidebar";
 
 interface LayoutProps {
-  kpi: React.ReactNode;
-  shift: React.ReactNode;
-  header: React.ReactNode;
-  profile: React.ReactNode;
-  sidebar: React.ReactNode;
   children: React.ReactNode;
-  attendance: React.ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {

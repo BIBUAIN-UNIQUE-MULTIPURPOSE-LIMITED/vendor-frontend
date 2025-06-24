@@ -15,7 +15,7 @@ export default function Page() {
             <TabsTrigger
               asChild
               value={name}
-              className="py-2 border-none rounded-none bg-red-600"
+              className="py-2 border-none rounded-none"
             >
               <Button size="lg" variant="secondary">
                 <p className="text-sm font-semibold">
