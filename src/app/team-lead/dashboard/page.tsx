@@ -1,3 +1,4 @@
+import OverpaymentMonitoring from "@/components/team-lead/dashboard/overpayment-monitoring";
 import RateSettings from "@/components/team-lead/dashboard/rate-settings";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -16,7 +17,7 @@ const Page = () => {
             <RateSettings />
           </TabsContent>
           <TabsContent value="overpayment">
-            <p>Overpayment Monitoring Content</p>
+            <OverpaymentMonitoring />
           </TabsContent>
         </Tabs>
       </div>

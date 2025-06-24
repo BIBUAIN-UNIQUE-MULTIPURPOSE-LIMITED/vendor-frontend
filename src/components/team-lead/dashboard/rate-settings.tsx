@@ -1,5 +1,7 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -19,19 +21,64 @@ import { formatCurrency } from "@/lib/utilities/formatCurrency";
 import { cn } from "@/lib/utils";
 
 import { TabsContent } from "@radix-ui/react-tabs";
-import { RefreshCcw } from "lucide-react";
+import { ChevronDown, Plus, RefreshCcw } from "lucide-react";
 import { CurrencyDropdown } from "../currency-dropdown-menu";
 import { MyOffers } from "./my-offers";
 import { CostPriceAnalysis } from "./cost-price-analysis";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useState } from "react";
 
 const RateSettings = () => {
+  const [activeCoin, setActiveCoin] = useState<{
+    name: string;
+    symbol: string;
+  } | null>(coins[0]);
   return (
     <div>
       <h2 className="text-lg font-semibold mb-4">Rate Management Settings</h2>
-      <Tabs defaultValue={coins[0].symbol} className="flex-1 space-y-4">
+      <Tabs
+        defaultValue={coins[0].symbol}
+        value={activeCoin?.symbol || "add"}
+        className="flex-1 space-y-4"
+      >
         {/* Top row: TabsList + Dropdown + Refresh Button */}
         <div className="flex items-start justify-between gap-4 flex-wrap">
-          <TabsList className="flex flex-wrap bg-white rounded border flex-1">
+          {/* mobile selector */}
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className={cn(
+                buttonVariants({ variant: "outline" }),
+                "flex flex-1  items-center justify-between gap-2 md:hidden",
+              )}
+            >
+              {activeCoin?.name || "Add Coin"} <ChevronDown />{" "}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Select Coins</DropdownMenuLabel>
+              {coins.map((coin) => (
+                <DropdownMenuItem
+                  key={coin.symbol}
+                  onClick={() => setActiveCoin(coin)}
+                >
+                  {coin.name}
+                </DropdownMenuItem>
+              ))}
+              <DropdownMenuItem
+                onClick={() => setActiveCoin(null)}
+                className="flex flex-col justify-center  items-center"
+              >
+                <Plus />
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <TabsList className="hidden md:flex  flex-wrap bg-white rounded border flex-1">
             {coins.map(({ name, symbol }) => (
               <TabsTrigger
                 key={symbol}

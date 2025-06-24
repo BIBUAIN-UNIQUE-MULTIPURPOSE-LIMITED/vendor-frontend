@@ -19,6 +19,8 @@ const badgeVariants = cva(
           "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
         success:
           "border-transparent bg-green-200 hover:bg-green-300 text-green-900 [a&]:hover:bg-success/90",
+        pending:
+          "border-transparent bg-yellow-200 hover:bg-yellow-300 text-yellow-900 [a&]:hover:bg-/90",
       },
     },
     defaultVariants: {
