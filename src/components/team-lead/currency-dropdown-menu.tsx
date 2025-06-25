@@ -25,8 +25,8 @@ export const CurrencyDropdown = () => {
       <DropdownMenuContent>
         <DropdownMenuLabel>Currency</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {currencies.map(({ name, symbol }) => (
-          <DropdownMenuItem key={symbol}>{name}</DropdownMenuItem>
+        {currencies.map(({ symbol }) => (
+          <DropdownMenuItem key={symbol}>{symbol}</DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>

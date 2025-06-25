@@ -33,6 +33,25 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { DialogClose } from "@radix-ui/react-dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { SelectGroup } from "@radix-ui/react-select";
 
 const RateSettings = () => {
   const [activeCoin, setActiveCoin] = useState<{
@@ -282,8 +301,53 @@ const EditRate = () => {
             </div>
           </div>
         </div>
-        <Button className="w-full">Apply to all Platforms</Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="w-full">Apply to all Platforms</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Apply to Platform</DialogTitle>
+              <DialogDescription>
+                Select which platform you want to apply the current settings
+              </DialogDescription>
+            </DialogHeader>
+            <div>
+              <PlatformSelect />
+            </div>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DialogClose>
+              <Button type="submit">Apply to (0) Platforms</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
+  );
+};
+
+export const PlatformSelect = () => {
+  return (
+    <Select>
+      <SelectTrigger className="w-full">
+        <SelectValue
+          placeholder="Select Platform"
+          className="placeholder:font-normal placeholder:text-black"
+        />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Platforms</SelectLabel>
+          <SelectItem value="All">All</SelectItem>
+          {platforms.map((platform) => (
+            <SelectItem key={platform.name} value={platform.name}>
+              {platform.name}
+            </SelectItem>
+          ))}
+        </SelectGroup>
+      </SelectContent>
+    </Select>
   );
 };

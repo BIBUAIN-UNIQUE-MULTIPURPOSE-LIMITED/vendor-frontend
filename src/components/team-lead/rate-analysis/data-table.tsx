@@ -1,12 +1,14 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Table,
   TableBody,
@@ -15,6 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -27,8 +30,9 @@ import {
   useReactTable,
   VisibilityState,
 } from "@tanstack/react-table";
-import { Download, Funnel } from "lucide-react";
+
 import { useState } from "react";
+import { PlatformSelect } from "../dashboard/rate-settings";
 
 interface DataTableProps<TData, TValue> {
   data: TData[];
@@ -74,48 +78,38 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between py-4 gap-4">
-        <h2 className="font-semibold text-lg tracking-tight min-w-fit md:flex-1 md:gap-6">
-          Transaction History
-        </h2>
-        <div className="flex items-center  md:justify-end gap-2 w-full">
+        <div className="flex flex-col md:flex-row items-center  md:justify-end gap-2 w-full">
           <Input
-            placeholder="Search all fields..."
+            placeholder="Search tickets..."
             value={globalFilter ?? ""}
             onChange={(event) => setGlobalFilter(event.target.value)}
-            className="flex-1 bg-white md:max-w-sm "
+            className="flex-1 bg-white w-full  "
           />
-          <div className="">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="ml-auto">
-                  <span className="hidden md:inline-block text-gray-600">
-                    Filter
-                  </span>
-                  <Funnel className="text-gray-600" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {table
-                  .getAllColumns()
-                  .filter((col) => col.getCanHide())
-                  .map((column) => (
-                    <DropdownMenuCheckboxItem
-                      key={column.id}
-                      className="capitalize"
-                      checked={column.getIsVisible()}
-                      onCheckedChange={(value) =>
-                        column.toggleVisibility(!!value)
-                      }
-                    >
-                      {column.id}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Button variant="outline" className="text-gray-600">
-              <Download />
-              <span className="hidden md:inline-block">Export CSV</span>
-            </Button>
+          <div className="flex items-center gap-2">
+            <Select defaultValue="td">
+              <SelectTrigger>
+                <SelectValue placeholder="Today" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="td">Today</SelectItem>
+                  <SelectItem value="yr">Yesterday</SelectItem>
+                  <SelectItem value="last7">Last 7 Days</SelectItem>
+                  <SelectItem value="last30">Last 30 Days</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="Alex John" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="jd">John Doe</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            <PlatformSelect />
           </div>
         </div>
       </div>

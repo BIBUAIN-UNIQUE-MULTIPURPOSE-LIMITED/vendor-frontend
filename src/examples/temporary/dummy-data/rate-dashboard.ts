@@ -2,13 +2,7 @@ const currencies = [
   { name: "US Dollar (USD)", symbol: "USD" },
   { name: "Euro (EUR)", symbol: "EUR" },
   { name: "British Pound (GBP)", symbol: "GBP" },
-  { name: "Japanese Yen (JPY)", symbol: "JPY" },
-  { name: "Canadian Dollar (CAD)", symbol: "CAD" },
-  { name: "Australian Dollar (AUD)", symbol: "AUD" },
-  { name: "Swiss Franc (CHF)", symbol: "CHF" },
-  { name: "Chinese Yuan (CNY)", symbol: "CNY" },
-  { name: "Indian Rupee (INR)", symbol: "INR" },
-  { name: "Brazilian Real (BRL)", symbol: "BRL" },
+  { name: "British Pound (GBP)", symbol: "NGN" },
 ];
 
 const coins = [

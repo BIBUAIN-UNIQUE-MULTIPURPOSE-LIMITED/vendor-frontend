@@ -6,6 +6,16 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
   Table,
   TableBody,
   TableCell,
@@ -63,10 +73,51 @@ export const MyOffers = () => {
         </div>
       </CardContent>
       <CardFooter className="flex items-center gap-4 justify-end">
-        <Button variant="outline" className="text-red-500">
-          Deactivate All Offers
-        </Button>
-        <Button className="bg-green-500">Activate All Offers</Button>
+        {/* deactivate */}
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline" className="text-red-500">
+              Deactivate All Offers
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Apply to Platform</DialogTitle>
+              <DialogDescription>
+                Select which platform you want to apply the current settings
+              </DialogDescription>
+            </DialogHeader>
+
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DialogClose>
+              <Button type="submit">Confirm</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* activate all offers */}
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="bg-green-500">Activate All Offers</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Apply to Platform</DialogTitle>
+              <DialogDescription>
+                Select which platform you want to apply the current settings
+              </DialogDescription>
+            </DialogHeader>
+
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DialogClose>
+              <Button type="submit">Confirm</Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </CardFooter>
     </Card>
   );
