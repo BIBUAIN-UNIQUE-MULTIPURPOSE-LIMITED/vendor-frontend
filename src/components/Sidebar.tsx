@@ -172,10 +172,5 @@ export const routesGroups: RouteGroups = {
       href: "/inbox",
       iconName: "inbox",
     },
-    // {
-    //   name: "settings",
-    //   href: "/settings",
-    //   iconName: "settings",
-    // },
   ],
 };

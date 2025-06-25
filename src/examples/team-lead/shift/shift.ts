@@ -1,6 +1,6 @@
-import { ShiftFlow } from "@/components/teamlead-profile/Shift";
-import { ShiftReport } from "@/components/teamlead-profile/Shift";
-import { ShiftStatistics } from "@/components/teamlead-profile/Shift";
+import { ShiftFlow } from "@/pages/teamlead-profile/Shift";
+import { ShiftReport } from "@/pages/teamlead-profile/Shift";
+import { ShiftStatistics } from "@/pages/teamlead-profile/Shift";
 
 export type Tab = {
   name: string;
