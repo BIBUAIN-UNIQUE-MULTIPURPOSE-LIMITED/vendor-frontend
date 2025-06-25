@@ -1,7 +1,7 @@
-import { KPI } from "@/pages/teamlead-profile/KPI";
-import { Shift } from "@/pages/teamlead-profile/Shift";
-import { Profile } from "@/pages/teamlead-profile/Profile";
-import { History } from "@/pages/teamlead-profile/History";
+import { KPI } from "../../../pages/teamlead-profile/KPI";
+import { Shift } from "../../../pages/teamlead-profile/Shift";
+import { Profile } from "../../../pages/teamlead-profile/Profile";
+import { History } from "../../../pages/teamlead-profile/History";
 
 export type Tab = {
   name: string;
