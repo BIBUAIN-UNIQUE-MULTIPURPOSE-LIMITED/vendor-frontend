@@ -1,7 +1,7 @@
-import { KPITabinationRate } from "../../../pages/teamlead-profile/KPI";
-import { KPITabinationCoin } from "../../../pages/teamlead-profile/KPI";
-import { KPITabinationAudit } from "../../../pages/teamlead-profile/KPI";
-import { KPITabinationProfit } from "../../../pages/teamlead-profile/KPI";
+import { KPITabinationRate } from "@/components/teamlead-profile/KPI";
+import { KPITabinationCoin } from "@/components/teamlead-profile/KPI";
+import { KPITabinationAudit } from "@/components/teamlead-profile/KPI";
+import { KPITabinationProfit } from "@/components/teamlead-profile/KPI";
 
 export type Tab = {
   name: string;
