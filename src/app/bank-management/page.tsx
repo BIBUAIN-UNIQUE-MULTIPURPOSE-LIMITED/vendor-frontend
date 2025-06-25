@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { RefreshCw, Filter, Plus } from "lucide-react";
-import BankTable from "@/components/ui-bankmanagement/BankTable";
-import TabNavigation from "@/components/ui-bankmanagement/TabNavigation";
+import BankTable from "@/components/ui/BankTable";
+import TabNavigation from "@/components/ui/TabNavigation";
 
 export default function BankManagementPage() {
   return (

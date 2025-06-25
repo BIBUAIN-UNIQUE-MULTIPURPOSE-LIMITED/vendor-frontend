@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
-import ErrorBankTable from "@/components/ui-errorbanklog/ErrorBankTable";
-import TabNavigation from "@/components/ui-bankmanagement/TabNavigation";
+import ErrorBankTable from "@/components/ui/ErrorBankTable";
+import TabNavigation from "@/components/ui/TabNavigation";
 
 export default function ErrorBankLogPage() {
   return (
