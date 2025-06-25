@@ -7,8 +7,8 @@ const currencies = [
 
 const coins = [
   { name: "Bitcoin (BTC)", symbol: "BTC" },
+  { name: "Tether (USDT)", symbol: "USDT" },
   { name: "Ethereum (ETH)", symbol: "ETH" },
-  { name: "Ripple (XRP)", symbol: "XRP" },
 ];
 
 const platforms = [

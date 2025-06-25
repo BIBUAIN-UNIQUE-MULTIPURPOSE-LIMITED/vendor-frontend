@@ -16,6 +16,14 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Table,
   TableBody,
   TableCell,
@@ -25,20 +33,37 @@ import {
 } from "@/components/ui/table";
 import { offers } from "@/examples/temporary/dummy-data/rate-dashboard";
 import { formatCurrency } from "@/lib/utilities/formatCurrency";
-import { ChevronDown } from "lucide-react";
 
-export const MyOffers = () => {
+export const MyOffers = ({ coin }: { coin?: string }) => {
   return (
     <Card>
       <CardHeader className="flex items-center justify-between">
         <h3 className="font-bold tracking-tight ">My Offers</h3>
         <div className="flex items-center gap-4">
-          <Button className="flex gap-2 items-center" variant="outline">
-            Add <ChevronDown />{" "}
-          </Button>
-          <Button className="flex gap-2 items-center" variant="outline">
-            Coin <ChevronDown />{" "}
-          </Button>
+          <Select defaultValue="all">
+            <SelectTrigger>
+              <SelectValue placeholder="select" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="all">All</SelectItem>
+                <SelectItem value="active">Active</SelectItem>
+                <SelectItem value="inactive">Inactive</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <Select defaultValue="coin">
+            <SelectTrigger>
+              <SelectValue placeholder="select" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="coin">Coin</SelectItem>
+                <SelectItem value="btc">BTC</SelectItem>
+                <SelectItem value="eth">eth</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
       </CardHeader>
       <CardContent>
@@ -53,21 +78,29 @@ export const MyOffers = () => {
                 <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
-              {offers.map((offer, i) => (
-                <TableRow key={i}>
-                  <TableCell>{offer.platform}</TableCell>
-                  <TableCell>{offer.coin}</TableCell>
-                  <TableCell>{offer.paymentMethod}</TableCell>
-                  <TableCell>
-                    {formatCurrency(offer.offerRate, offer.currency)}
-                  </TableCell>
-                  <TableCell>
-                    {/* Actions can be buttons or links for editing/deleting the offer */}
-                    <Button variant="outline">Edit</Button>
+            <TableBody className="w-full">
+              {coin ? (
+                offers.map((offer, i) => (
+                  <TableRow key={i}>
+                    <TableCell>{offer.platform}</TableCell>
+                    <TableCell>{coin}</TableCell>
+                    <TableCell>{offer.paymentMethod}</TableCell>
+                    <TableCell>
+                      {formatCurrency(offer.offerRate, offer.currency)}
+                    </TableCell>
+                    <TableCell>
+                      {/* Actions can be buttons or links for editing/deleting the offer */}
+                      <Button variant="outline">Edit</Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={5} className="h-24 text-center">
+                    Add a coin
                   </TableCell>
                 </TableRow>
-              ))}
+              )}
             </TableBody>
           </Table>
         </div>

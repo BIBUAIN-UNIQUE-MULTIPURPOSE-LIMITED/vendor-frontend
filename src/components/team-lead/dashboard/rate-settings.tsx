@@ -103,11 +103,16 @@ const RateSettings = () => {
                 key={symbol}
                 value={symbol}
                 className="text-sm py-3 text-center rounded"
+                onClick={() => setActiveCoin({ name, symbol })}
               >
                 {name}
               </TabsTrigger>
             ))}
-            <TabsTrigger value="add" className="text-gray-950 rounded max-w-8">
+            <TabsTrigger
+              onClick={() => setActiveCoin(null)}
+              value="add"
+              className="text-gray-950 rounded max-w-8"
+            >
               +
             </TabsTrigger>
           </TabsList>
@@ -121,8 +126,8 @@ const RateSettings = () => {
         </div>
 
         {/* Tab content below, full width */}
-        {coins.map(({ symbol }) => (
-          <TabsContent key={symbol} value={symbol}>
+        {activeCoin && (
+          <TabsContent value={activeCoin.symbol}>
             <div className="flex flex-col md:flex-row items-center w-full gap-4">
               {platforms.map(
                 ({ name, marketPrice, costPrice, currency, status, order }) => (
@@ -179,11 +184,11 @@ const RateSettings = () => {
             </div>
             <div className="flex flex-col gap-10 my-10">
               <EditRate />
-              <MyOffers />
+              <MyOffers coin={activeCoin?.symbol} />
               <CostPriceAnalysis />
             </div>
           </TabsContent>
-        ))}
+        )}
 
         <TabsContent value="add">
           <div className="p-4 border rounded bg-primary text-white">
