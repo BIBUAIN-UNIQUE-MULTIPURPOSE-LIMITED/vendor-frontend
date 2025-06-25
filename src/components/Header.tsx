@@ -50,16 +50,6 @@ function useHeader() {
 }
 
 export function Header() {
-  // useEffect(function () {
-  //   const onBeforeUnload = (event: BeforeUnloadEvent) => event.preventDefault();
-
-  //   window.addEventListener("beforeunload", onBeforeUnload);
-
-  //   return function () {
-  //     window.removeEventListener("beforeunload", onBeforeUnload);
-  //   };
-  // }, []);
-
   return (
     <HeaderProvider>
       <header className="z-5 top-0 left-0 sticky border-b backdrop-blur bg-background/50 @container/header">
@@ -280,7 +270,7 @@ export function MiniProfile() {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href="/profile/team-lead">
+            <Link href="/team-lead/profile">
               <CircleUser />
               <p className="text-sm font-semibold">
                 <span className="one-line capitalize">profile</span>
