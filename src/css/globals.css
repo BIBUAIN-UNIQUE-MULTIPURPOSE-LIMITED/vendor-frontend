@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@import "./vars.css";
+@import "./theme.css";
+@import "./utility.css";
+
+@layer base {
+  * {
+    outline-color: var(--color-ring);
+    border-color: var(--color-border);
+  }
+  body {
+    font-size: small;
+
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+  }
+}
