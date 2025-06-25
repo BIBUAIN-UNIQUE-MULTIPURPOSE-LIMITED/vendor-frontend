@@ -1,10 +1,9 @@
-export default function Home() {
+export default function Page() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <h1 className="text-4xl font-bold">Welcome to Bibuain</h1>
-        <p> You can start with your contribution </p>
-      </main>
-    </div>
+    <section className="space-y-5">
+      <h3 className="text-xl font-bold">
+        <span className="capitalize">welcome to bibuain landing page</span>
+      </h3>
+    </section>
   );
 }
