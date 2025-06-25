@@ -79,7 +79,7 @@ export function SideBar() {
                       <SidebarMenuButton
                         asChild
                         size={sidebar.open ? "lg" : "default"}
-                        // className="text-white hover:bg-transparent active:bg-transparent"
+                        className="text-white data-[state=active]:text-chart-4"
                       >
                         <Link href={href}>
                           <DynamicIcon name={iconName} />
@@ -155,17 +155,17 @@ export const routesGroups: RouteGroups = {
     {
       name: "transaction history",
       href: "/transaction-history",
-      iconName: "receipt-text",
+      iconName: "circle-dollar-sign",
     },
     {
       name: "rate setings",
       href: "/rate-setings",
-      iconName: "receipt-text",
+      iconName: "square-radical",
     },
     {
       name: "rate analysis",
       href: "/rate-analysis",
-      iconName: "receipt-text",
+      iconName: "chart-line",
     },
     {
       name: "inbox",

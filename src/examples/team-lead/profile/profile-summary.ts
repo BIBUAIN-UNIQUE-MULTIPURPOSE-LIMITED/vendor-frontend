@@ -15,13 +15,23 @@ export const metrics: Metric[] = [
     iconName: "chart-network",
   },
   {
-    amount: "#2.8M",
+    amount:
+      Number(2.8).toLocaleString("en-NG", {
+        currency: "NGN",
+        style: "currency",
+        minimumFractionDigits: 0,
+      }) + "M",
     subtitle: "this month",
     title: "coin purchased",
     iconName: "circle-dollar-sign",
   },
   {
-    amount: "#2.8M",
+    amount:
+      Number(2.8).toLocaleString("en-NG", {
+        currency: "NGN",
+        style: "currency",
+        minimumFractionDigits: 0,
+      }) + "M",
     title: "amount spent",
     subtitle: "per trade",
     iconName: "chart-line",

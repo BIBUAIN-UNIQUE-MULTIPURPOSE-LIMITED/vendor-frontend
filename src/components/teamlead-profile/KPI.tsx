@@ -127,8 +127,8 @@ export function KPITabinationAudit() {
           </CardDescription>
         </CardHeader>
         <CardContent className="@container/card">
-          <Card>
-            <CardContent className="space-y-5">
+          <Card className="p-0 border-none shadow-none">
+            <CardContent className="px-0 space-y-5">
               {data.map((props, index) => (
                 <Fragment key={index}>
                   <KPITabinationAuditComponentsRateBreakDown {...props} />
@@ -351,8 +351,8 @@ export function KPITabinationCoin() {
         </div>
       </CardHeader>
       <CardContent className="@container/card">
-        <Card>
-          <CardContent className="space-y-5">
+        <Card className="p-0 border-none shadow-none">
+          <CardContent className="px-0 space-y-5">
             {coinData.map((props, index) => (
               <Fragment key={index}>
                 <KPITabinationCoinComponentsRateBreakDown {...props} />
@@ -496,8 +496,8 @@ export function KPITabinationProfit() {
         </CardDescription>
       </CardHeader>
       <CardContent className="@container/card">
-        <Card>
-          <CardContent className="space-y-5">
+        <Card className="p-0 border-none shadow-none">
+          <CardContent className="px-0 space-y-5">
             {profitData.map((props, index) => (
               <Fragment key={index}>
                 <KPITabinationProfitRateBreakDown {...props} />
@@ -668,8 +668,8 @@ export function KPITabinationRate() {
         </CardDescription>
       </CardHeader>
       <CardContent className="@container/card">
-        <Card>
-          <CardContent className="space-y-5">
+        <Card className="p-0 border-none shadow-none">
+          <CardContent className="px-0 space-y-5">
             {rateData.map((props, index) => (
               <Fragment key={index}>
                 <KPITabinationRateRateBreakDown {...props} />

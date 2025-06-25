@@ -77,8 +77,8 @@ export function ProfilePerformance() {
         </CardDescription>
       </CardHeader>
       <CardContent className="@container/card">
-        <Card>
-          <CardContent className="space-y-5">
+        <Card className="p-0 border-none shadow-none">
+          <CardContent className="px-0 space-y-5">
             {performanceMetrics.map((props, index) => (
               <Fragment key={index}>
                 <div className="space-y-2">

@@ -62,11 +62,6 @@ export function HistoryNotes() {
         <CardTitle className="text-xl font-semibold">
           <span className="capitalize">flags & notes</span>
         </CardTitle>
-        <CardDescription className="text-sm">
-          <span className="sentence">
-            view important flags and notes related to your attendance records.
-          </span>
-        </CardDescription>
       </CardHeader>
       <CardContent className="@container/card">
         <div>
@@ -106,18 +101,11 @@ import { summaryMetrics } from "@/examples/team-lead/history/history-attendance-
 
 export function HistorySummary() {
   return (
-    <Card>
-      <CardHeader className="gap-0">
-        <CardTitle className="text-xl font-semibold">
-          <span className="capitalize">monthly summary</span>
-        </CardTitle>
-        <CardDescription className="text-base">
-          <span className="sentence">
-            overview of key attendance metrics for the current month.
-          </span>
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="@container/grid">
+    <div className="space-y-3">
+      <div className="text-xl font-semibold">
+        <span className="capitalize">monthly summary</span>
+      </div>
+      <div className="@container/grid">
         <div className="grid gap-5 grid-cols-12">
           {summaryMetrics.map((props, index) => (
             <Fragment key={index}>
@@ -164,8 +152,8 @@ export function HistorySummary() {
             </Fragment>
           ))}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -186,66 +174,54 @@ import { punctualMetrics } from "@/examples/team-lead/history/history-punctualit
 
 export function HistoryPunctualitySummary() {
   return (
-    <Card>
-      <CardHeader className="gap-0">
-        <CardTitle className="text-xl font-semibold">
-          <span className="capitalize">punctuality summary</span>
-        </CardTitle>
-        <CardDescription className="text-base">
-          <span className="sentence">
-            overview of punctuality metrics and statistics
-          </span>
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="@container/grid">
-        <div className="grid gap-5 grid-cols-12 @6xl/grid:grid-cols-10">
-          {punctualMetrics.map((props, index) => (
-            <Fragment key={index}>
-              <div className="col-span-12 @xl/grid:col-span-6 @3xl/grid:col-span-4 @5xl/grid:col-span-3 @6xl/grid:col-span-2">
-                <Card className="py-3">
-                  <CardHeader className="px-3 block">
-                    <div className="flex gap-3 items-center justify-between">
-                      <div className="flex-1">
-                        <p className="text-sm font-semibold">
-                          <span className="one-line capitalize">
-                            {props.title}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="flex-none">
-                        <DynamicIcon size={18} name={props.iconName} />
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="px-3 block">
-                    <h3 className="mb-1 text-xl font-semibold">
-                      <span className="capitalize">{props.amount}</span>
-                    </h3>
-                    <Button
-                      disabled
-                      variant="ghost"
-                      className="!p-0 h-auto bg-transparent disabled:opacity-100"
-                    >
-                      <Circle
-                        className="stroke-none"
-                        style={{
-                          fill: `var(${props.colorVar})`,
-                        }}
-                      />
-                      <h3 className="text-sm font-semibold">
-                        <span className="sentence text-muted-foreground">
-                          {props.subtitle}
+    <div className="@container/grid mt-5">
+      <div className="grid gap-5 grid-cols-12 @6xl/grid:grid-cols-10">
+        {punctualMetrics.map((props, index) => (
+          <Fragment key={index}>
+            <div className="col-span-12 @xl/grid:col-span-6 @3xl/grid:col-span-4 @5xl/grid:col-span-3 @6xl/grid:col-span-2">
+              <Card className="py-3">
+                <CardHeader className="px-3 block">
+                  <div className="flex gap-3 items-center justify-between">
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold">
+                        <span className="one-line capitalize">
+                          {props.title}
                         </span>
-                      </h3>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-            </Fragment>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+                      </p>
+                    </div>
+                    <div className="flex-none">
+                      <DynamicIcon size={18} name={props.iconName} />
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="px-3 block">
+                  <h3 className="mb-1 text-xl font-semibold">
+                    <span className="capitalize">{props.amount}</span>
+                  </h3>
+                  <Button
+                    disabled
+                    variant="ghost"
+                    className="!p-0 h-auto bg-transparent disabled:opacity-100"
+                  >
+                    <Circle
+                      className="stroke-none"
+                      style={{
+                        fill: `var(${props.colorVar})`,
+                      }}
+                    />
+                    <h3 className="text-sm font-semibold">
+                      <span className="sentence text-muted-foreground">
+                        {props.subtitle}
+                      </span>
+                    </h3>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </Fragment>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -270,8 +246,8 @@ export function HistoryPunctualityHistory() {
         </CardDescription>
       </CardHeader>
       <CardContent className="@container/card">
-        <Card>
-          <CardContent className="space-y-5">
+        <Card className="p-0 border-none shadow-none">
+          <CardContent className="px-0 space-y-5">
             {hphMetrics.map((props, index) => (
               <Fragment key={index}>
                 <div className="p-3 border rounded-lg">

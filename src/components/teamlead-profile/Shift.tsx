@@ -41,7 +41,7 @@ export function Shift() {
 import { Badge } from "@/components/ui/badge";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { CardContent, CardDescription } from "@/components/ui/card";
-import { CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function ShiftFlow() {
@@ -130,10 +130,10 @@ export function ShiftFlow() {
                 </Button>
               </div>
             </details>
-            <div className="p-3 rounded-lg bg-orange-500/20">
+            <div className="p-3 rounded-lg bg-[#fdfbe8]">
               <p className="text-base">
                 <span className="font-bold sentence">note:&nbsp;</span>
-                <span className="sentence text-muted-foreground">
+                <span className="sentence text-[#854d0e]">
                   once submitted, this report will be locked and cannot be
                   edited until admin review is complete
                 </span>
@@ -212,7 +212,8 @@ export function ShiftReportCharges() {
             <div className="space-y-1">
               <Label className="text-base">
                 <span className="capitalize">
-                  sendout count - all platforms
+                  sendout count <ArrowRight size={15} className="inline" /> all
+                  platforms
                 </span>
               </Label>
               <Input
@@ -225,7 +226,8 @@ export function ShiftReportCharges() {
             <div className="space-y-1">
               <Label className="text-base">
                 <span className="capitalize">
-                  sendout amount - all platforms
+                  sendout amount <ArrowRight size={15} className="inline" /> all
+                  platforms
                 </span>
               </Label>
               <Input
@@ -238,7 +240,8 @@ export function ShiftReportCharges() {
             <div className="space-y-1">
               <Label className="text-base">
                 <span className="capitalize">
-                  exchange charges - all platforms
+                  exchange charges <ArrowRight size={15} className="inline" />{" "}
+                  all platforms
                 </span>
               </Label>
               <Input
@@ -279,8 +282,6 @@ export function ShiftReportCharges() {
 
 // Shift Report Comments
 
-import { MessageSquareMore } from "lucide-react";
-
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -294,7 +295,7 @@ export function ShiftReportComments() {
             variant="ghost"
             className="!p-0 h-auto disabled:opacity-100"
           >
-            <MessageSquareMore className="!size-6" />
+            {/* <MessageSquareMore className="!size-6" /> */}
             <span className="text-xl capitalize font-semibold">
               comments & recommendation
             </span>
@@ -834,54 +835,42 @@ import { summaryMetrics } from "@/examples/team-lead/shift/shift-statistics-summ
 
 export function ShiftStatisticsSummary() {
   return (
-    <Card>
-      <CardHeader className="gap-0">
-        <CardTitle className="text-xl font-semibold">
-          <span className="capitalize">team summary</span>
-        </CardTitle>
-        <CardDescription className="text-base">
-          <span className="sentence">
-            overview of team shift for the current month.
-          </span>
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="@container/grid">
-        <div className="grid gap-5 grid-cols-12">
-          {summaryMetrics.map((props, index) => (
-            <Fragment key={index}>
-              <div className="col-span-12 @xl/grid:col-span-6 @3xl/grid:col-span-4 @5xl/grid:col-span-3">
-                <Card className="py-3">
-                  <CardHeader className="px-3 block">
-                    <div className="flex gap-3 items-center justify-between">
-                      <div className="flex-1">
-                        <p className="text-sm font-semibold">
-                          <span className="one-line capitalize">
-                            {props.title}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="flex-none">
-                        <DynamicIcon size={18} name={props.iconName} />
-                      </div>
+    <div className="@container/grid mt-5">
+      <div className="grid gap-5 grid-cols-12">
+        {summaryMetrics.map((props, index) => (
+          <Fragment key={index}>
+            <div className="col-span-12 @xl/grid:col-span-6 @3xl/grid:col-span-4 @5xl/grid:col-span-3">
+              <Card className="py-3">
+                <CardHeader className="px-3 block">
+                  <div className="flex gap-3 items-center justify-between">
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold">
+                        <span className="one-line capitalize">
+                          {props.title}
+                        </span>
+                      </p>
                     </div>
-                  </CardHeader>
-                  <CardContent className="px-3 block">
-                    <h3 className="text-xl font-semibold">
-                      <span className="capitalize">{props.amount}</span>
-                    </h3>
-                    <p className="text-sm font-semibold">
-                      <span className="sentence text-muted-foreground">
-                        {props.subtitle}
-                      </span>
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </Fragment>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+                    <div className="flex-none">
+                      <DynamicIcon size={18} name={props.iconName} />
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="px-3 block">
+                  <h3 className="text-xl font-semibold">
+                    <span className="capitalize">{props.amount}</span>
+                  </h3>
+                  <p className="text-sm font-semibold">
+                    <span className="sentence text-muted-foreground">
+                      {props.subtitle}
+                    </span>
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </Fragment>
+        ))}
+      </div>
+    </div>
   );
 }
 
