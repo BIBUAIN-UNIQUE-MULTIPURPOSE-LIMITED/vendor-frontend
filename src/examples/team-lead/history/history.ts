@@ -1,5 +1,5 @@
-import { HistoryAttendance } from "@/pages/teamlead-profile/History";
-import { HistoryPunctuality } from "@/pages/teamlead-profile/History";
+import { HistoryAttendance } from "../../../pages/teamlead-profile/History";
+import { HistoryPunctuality } from "../../../pages/teamlead-profile/History";
 
 export type Tab = {
   name: string;
