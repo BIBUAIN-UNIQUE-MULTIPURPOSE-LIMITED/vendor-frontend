@@ -1,13 +1,13 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { Edit, Trash2, User, AlertCircle } from "lucide-react";
+import { AlertCircle, Edit, Trash2, User } from "lucide-react";
 
 interface ActionDropdownProps {
   onEditBalance: () => void;
