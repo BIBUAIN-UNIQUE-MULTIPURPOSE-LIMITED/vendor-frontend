@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { RefreshCw, Save } from "lucide-react";
-import RateSetupControls from "@/components/ui/RateSetupControls";
-import MyOffersSetupPanel from "@/components/ui/MyOffersSetupPanel";
+import RateSetupControls from "@/components/ui-ratesettings/RateSetupControls";
+import MyOffersSetupPanel from "@/components/ui-ratesettings/MyOffersSetupPanel";
 
 export default function RateSettingsPage() {
   const [isRefreshing, setIsRefreshing] = useState(false);
