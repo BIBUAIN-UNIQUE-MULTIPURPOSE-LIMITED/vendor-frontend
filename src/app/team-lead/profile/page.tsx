@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsTrigger } from "@/components/ui/tabs";
 import { TabsContent, TabsList } from "@/components/ui/tabs";
-
 import { tabs } from "@/examples/team-lead/profile/profile";
 
 export default function Page() {
