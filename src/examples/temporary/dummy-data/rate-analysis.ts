@@ -1,0 +1,148 @@
+export const rateAnalysisTableHeaders = [
+  "Trade ID",
+  "Platform",
+  "Coin Type",
+  "Coin Amount",
+  "NGN Selling Price",
+  "NGN Cost Price",
+  "USD Cost Price",
+  "Margin (NGN)",
+  "Platform USD Rate",
+  "Paid At",
+];
+
+export type TradeRow = {
+  tradeId: string;
+  platform: string;
+  coinType: string;
+  coinAmount: string;
+  ngnSellingPrice: number;
+  ngnCostPrice: number;
+  usdCostPrice: number;
+  margin: number;
+  platformUsdRate: number;
+  paidAt: string;
+};
+
+export const tradeData: TradeRow[] = [
+  {
+    tradeId: "#TRX-12345",
+    platform: "Paxful",
+    coinType: "BTC",
+    coinAmount: "1 BTC",
+    ngnSellingPrice: 4324092,
+    ngnCostPrice: 4124092,
+    usdCostPrice: 64245.65,
+    margin: 200,
+    platformUsdRate: 64245.65,
+    paidAt: "May 21, 2025",
+  },
+  {
+    tradeId: "#TRX-12344",
+    platform: "Noones",
+    coinType: "ETH",
+    coinAmount: "1 ETH",
+    ngnSellingPrice: 4224092,
+    ngnCostPrice: 4024092,
+    usdCostPrice: 64145.65,
+    margin: 190,
+    platformUsdRate: 64145.65,
+    paidAt: "May 21, 2025",
+  },
+  {
+    tradeId: "#TRX-12343",
+    platform: "Bybit",
+    coinType: "BTC",
+    coinAmount: "1 BTC",
+    ngnSellingPrice: 4124092,
+    ngnCostPrice: 3924092,
+    usdCostPrice: 64045.65,
+    margin: 180,
+    platformUsdRate: 64045.65,
+    paidAt: "May 21, 2025",
+  },
+  {
+    tradeId: "#TRX-12342",
+    platform: "Paxful",
+    coinType: "ETH",
+    coinAmount: "1 ETH",
+    ngnSellingPrice: 4024092,
+    ngnCostPrice: 3824092,
+    usdCostPrice: 63945.65,
+    margin: 170,
+    platformUsdRate: 63945.65,
+    paidAt: "May 21, 2025",
+  },
+  {
+    tradeId: "#TRX-12341",
+    platform: "Noones",
+    coinType: "BTC",
+    coinAmount: "1 BTC",
+    ngnSellingPrice: 3924092,
+    ngnCostPrice: 3724092,
+    usdCostPrice: 63845.65,
+    margin: 160,
+    platformUsdRate: 63845.65,
+    paidAt: "May 21, 2025",
+  },
+  {
+    tradeId: "#TRX-12340",
+    platform: "Bybit",
+    coinType: "ETH",
+    coinAmount: "1 ETH",
+    ngnSellingPrice: 3824092,
+    ngnCostPrice: 3624092,
+    usdCostPrice: 63745.65,
+    margin: 150,
+    platformUsdRate: 63745.65,
+    paidAt: "May 21, 2025",
+  },
+  {
+    tradeId: "#TRX-12339",
+    platform: "Paxful",
+    coinType: "BTC",
+    coinAmount: "1 BTC",
+    ngnSellingPrice: 3724092,
+    ngnCostPrice: 3524092,
+    usdCostPrice: 63645.65,
+    margin: 140,
+    platformUsdRate: 63645.65,
+    paidAt: "May 21, 2025",
+  },
+  {
+    tradeId: "#TRX-12338",
+    platform: "Noones",
+    coinType: "ETH",
+    coinAmount: "1 ETH",
+    ngnSellingPrice: 3624092,
+    ngnCostPrice: 3424092,
+    usdCostPrice: 63545.65,
+    margin: 130,
+    platformUsdRate: 63545.65,
+    paidAt: "May 21, 2025",
+  },
+  {
+    tradeId: "#TRX-12337",
+    platform: "Bybit",
+    coinType: "BTC",
+    coinAmount: "1 BTC",
+    ngnSellingPrice: 3824092,
+    ngnCostPrice: 3324092,
+    usdCostPrice: 63445.65,
+    margin: 120000,
+    platformUsdRate: 63445.65,
+    paidAt: "May 21, 2025",
+  },
+  {
+    tradeId: "#TRX-12336",
+    platform: "Paxful",
+    coinType: "ETH",
+    coinAmount: "1 ETH",
+    ngnSellingPrice: 3424092,
+    ngnCostPrice: 3224092,
+    usdCostPrice: 63345.65,
+    margin: 110,
+    platformUsdRate: 63345.65,
+    paidAt: "May 21, 2025",
+  },
+];

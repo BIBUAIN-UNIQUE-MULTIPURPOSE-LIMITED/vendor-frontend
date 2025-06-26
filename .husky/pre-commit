@@ -1,34 +1,34 @@
-# echo "🔍 Running pre-commit checks..."
+echo "🔍 Running pre-commit checks..."
 
-# # 1. Type checking first (fastest failure)
-# echo "📋 Type checking..."
-# if ! npm run type-check; then
-#   echo "❌ Type check failed. Aborting commit."
-#   exit 1
-# fi
+# 1. Type checking first (fastest failure)
+echo "📋 Type checking..."
+if ! npm run type-check; then
+  echo "❌ Type check failed. Aborting commit."
+  exit 1
+fi
 
-# # 2. Linting and formatting
-# echo "🔧 Running lint-staged..."
-# if ! npx lint-staged; then
-#   echo "❌ Linting/formatting failed. Aborting commit."
-#   exit 1
-# fi
+# 2. Linting and formatting
+echo "🔧 Running lint-staged..."
+if ! npx lint-staged; then
+  echo "❌ Linting/formatting failed. Aborting commit."
+  exit 1
+fi
 
-# # 3. Check for staged changes (from formatting)
-# if git diff --cached --quiet; then
-#   echo "✅ No formatting changes needed."
-# else
-#   echo "✨ Code was formatted. Adding changes to commit..."
-#   git add -u
-# fi
+# 3. Check for staged changes (from formatting)
+if git diff --cached --quiet; then
+  echo "✅ No formatting changes needed."
+else
+  echo "✨ Code was formatted. Adding changes to commit..."
+  git add -u
+fi
 
-# # 4. Check package-lock.json consistency
-# echo "🔍 Checking if package-lock.json is up to date..."
-# if ! npm install --package-lock-only --dry-run >/dev/null 2>&1; then
-#   echo "❌ package-lock.json is not in sync with package.json. Please run 'npm install'."
-#   exit 1
-# fi
+# 4. Check package-lock.json consistency
+echo "🔍 Checking if package-lock.json is up to date..."
+if ! npm install --package-lock-only --dry-run >/dev/null 2>&1; then
+  echo "❌ package-lock.json is not in sync with package.json. Please run 'npm install'."
+  exit 1
+fi
 
-# echo "📦 package-lock.json is in sync."
+echo "📦 package-lock.json is in sync."
 
-# echo "🚀 Pre-commit checks passed!"
+echo "🚀 Pre-commit checks passed!"
