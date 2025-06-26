@@ -15,7 +15,7 @@ export function History() {
             <TabsTrigger
               asChild
               value={name}
-              className="py-2 border-none rounded-none"
+              className="py-2 flex-1 border-none rounded-none"
             >
               <Button size="lg" variant="secondary">
                 <p className="text-sm font-semibold">
@@ -137,7 +137,7 @@ export function HistorySummary() {
                       <Circle
                         className="stroke-none"
                         style={{
-                          fill: `var(${props.colorVar})`,
+                          fill: props.colorVar,
                         }}
                       />
                       <h3 className="text-sm font-semibold">
@@ -206,7 +206,7 @@ export function HistoryPunctualitySummary() {
                     <Circle
                       className="stroke-none"
                       style={{
-                        fill: `var(${props.colorVar})`,
+                        fill: props.colorVar,
                       }}
                     />
                     <h3 className="text-sm font-semibold">

@@ -22,7 +22,7 @@ export const tabs: Tab[] = [
     Component: History,
   },
   {
-    name: "shift report",
+    name: "submit shift report",
     Component: Shift,
   },
 ];

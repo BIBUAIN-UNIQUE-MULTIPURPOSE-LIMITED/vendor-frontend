@@ -84,7 +84,7 @@ export function Header() {
                   }}
                 </HeaderContext.Consumer>
                 <div className="flex-none hidden @2xl/header:block">
-                  <ClockOut variant="destructive" />
+                  <ClockOut />
                 </div>
                 <div className="flex-none">
                   <MiniProfile />
@@ -120,6 +120,17 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export function Timer(props: React.ComponentProps<typeof Button>) {
   const [time, states] = useHeader();
@@ -188,9 +199,7 @@ export function Break(props: React.ComponentProps<typeof Button>) {
 export function ClockOut(props: React.ComponentProps<typeof Button>) {
   const [, states, control] = useHeader();
 
-  function clockOut(event: React.MouseEvent<HTMLButtonElement>) {
-    event.preventDefault();
-
+  function clockOut() {
     if (states.clockedIn) {
       control.reset();
     } else {
@@ -198,19 +207,44 @@ export function ClockOut(props: React.ComponentProps<typeof Button>) {
     }
   }
 
+  if (!states.clockedIn) {
+    return (
+      <Button {...props} variant="default" onClick={clockOut}>
+        <AlarmClock />
+        <p className="text-xs font-semibold">
+          <span className="capitalize">clock in</span>
+        </p>
+      </Button>
+    );
+  }
+
   return (
-    <Button
-      {...props}
-      variant={states.clockedIn ? "destructive" : "default"}
-      onClick={clockOut}
-    >
-      {states.clockedIn ? <AlarmClockOff /> : <AlarmClock />}
-      <p className="text-xs font-semibold">
-        <span className="capitalize">
-          clock {states.clockedIn ? "out" : "in"}
-        </span>
-      </p>
-    </Button>
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button {...props} variant="destructive" className="text-white">
+          <AlarmClockOff />
+          <p className="text-xs font-semibold">
+            <span className="capitalize">clock out</span>
+          </p>
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle className="font-bold">
+            <span className="capitalize">confirm clock out</span>
+          </AlertDialogTitle>
+          <AlertDialogDescription>
+            Are you sure you want to clock out and generate shift report?
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={clockOut}>
+            Yes, Clock Out
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
 
