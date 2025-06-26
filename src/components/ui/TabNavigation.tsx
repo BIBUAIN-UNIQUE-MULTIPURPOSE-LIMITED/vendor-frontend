@@ -7,8 +7,8 @@ export default function TabNavigation() {
   const pathname = usePathname();
 
   const tabs = [
-    { path: "/bank-management", label: "Bank Management" },
-    { path: "/error-bank-log", label: "Error Bank Log" },
+    { path: "/team-lead/bank-management", label: "Bank Management" },
+    { path: "/team-lead/error-bank-log", label: "Error Bank Log" },
   ];
 
   return (

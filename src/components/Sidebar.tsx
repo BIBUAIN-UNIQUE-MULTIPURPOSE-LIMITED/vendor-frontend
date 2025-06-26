@@ -139,32 +139,32 @@ export const routesGroups: RouteGroups = {
   "rate-management": [
     {
       name: "dashboard",
-      href: "/dashboard",
+      href: "/team-lead",
       iconName: "layout-dashboard",
     },
     {
       name: "coin exchange",
-      href: "/coin-exchange",
+      href: "/team-lead/coin-exchange",
       iconName: "coins",
     },
     {
       name: "bank management",
-      href: "/bank-management",
+      href: "/team-lead/bank-management",
       iconName: "landmark",
     },
     {
       name: "transaction history",
-      href: "/transaction-history",
+      href: "/team-lead/transaction-history",
       iconName: "circle-dollar-sign",
     },
     {
-      name: "rate setings",
-      href: "/rate-setings",
+      name: "rate settings",
+      href: "/team-lead/rate-settings",
       iconName: "square-radical",
     },
     {
       name: "rate analysis",
-      href: "/rate-analysis",
+      href: "/team-lead/rate-analysis",
       iconName: "chart-line",
     },
     {
