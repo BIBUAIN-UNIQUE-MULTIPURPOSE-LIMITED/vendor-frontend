@@ -16,11 +16,9 @@ export default function Layout({ children }: LayoutProps) {
       <body>
         <SidebarProvider width="var(--container-xs)">
           <SideBar />
-          <SidebarInset>
+          <SidebarInset className="bg-gray-100">
             <Header />
-            <div className="p-3 md:p-6 lg:p-9 pb-10 bg-gray-100">
-              {children}
-            </div>
+            <div className="p-3 pb-10">{children}</div>
           </SidebarInset>
         </SidebarProvider>
       </body>
