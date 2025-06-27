@@ -6,7 +6,7 @@ import { Download, File } from "lucide-react";
 
 const Page = () => {
   return (
-    <div className="bg-gray-100 container p-4 md:p-10 mx-auto ">
+    <div className="bg-gray-100">
       <div>
         <div className="flex items-center justify-between">
           <h2 className="font-bold  md:text-lg">Rate Ananlysis</h2>

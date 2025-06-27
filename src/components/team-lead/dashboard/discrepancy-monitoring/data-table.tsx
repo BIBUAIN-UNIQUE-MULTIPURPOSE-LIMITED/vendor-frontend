@@ -30,8 +30,8 @@ import { Fragment } from "react";
 
 const DiscrepancyMonitoringTable = () => {
   return (
-    <div className="overflow-auto">
-      <Table className="rounded-t-xl">
+    <div className="w-full overflow-x-auto">
+      <Table className="rounded-t-xl max-w-full table-auto">
         <TableHeader className="rounded-t-xl">
           <TableRow className="border !rounded-t-xl overflow-hidden">
             {discrepancyTableHeaders.map(({ key, label }) => (

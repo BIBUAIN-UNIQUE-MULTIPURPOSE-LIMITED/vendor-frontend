@@ -6,17 +6,19 @@ const Page = () => {
   return (
     <div className="">
       <div className="">
-        <Tabs defaultValue="rate">
+        <Tabs className="w-full" defaultValue="rate">
           <TabsList className="w-full">
-            <TabsTrigger value="rate">Rate Settings</TabsTrigger>
-            <TabsTrigger value="overpayment">
+            <TabsTrigger className="w-full" value="rate">
+              Rate Settings
+            </TabsTrigger>
+            <TabsTrigger className="w-full" value="overpayment">
               Discrepancy Monitoring
             </TabsTrigger>
           </TabsList>
           <TabsContent value="rate" className="">
             <RateSettings />
           </TabsContent>
-          <TabsContent value="overpayment">
+          <TabsContent value="overpayment" className="">
             <DiscrepancyMonitoring />
           </TabsContent>
         </Tabs>

@@ -26,76 +26,70 @@ import { Textarea } from "@/components/ui/textarea";
 
 const DiscrepancyMonitoring = () => {
   return (
-    <div>
-      <div>
-        <Card>
-          <CardHeader className="flex items-center justify-between">
-            <h2 className="flex text-lg md:text-2xl items-center gap-2 font-bold tracking-normal leading-tight">
-              <Flag className="text-primary" />
-              Overpayment Error Monitoring
-            </h2>
-            <div className="flex items-center gap-2 ">
-              <AddDiscrepancyDialog />
-              <Button className="text-xs py-2">
-                <Download />
-                Export CSV
-              </Button>
-            </div>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-4">
-            <div className="bg-gray-100 rounded-xl grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 p-4 gap-4">
-              {/* /form */}
-              <div className="flex flex-col items-start gap-2 w-full">
-                <Label className="sm:text-xs text-sm font-light">
-                  Status Filter
-                </Label>
-                {/* TODO: */}
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue className="" placeholder="All Status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value="all">All</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="flex flex-col items-start gap-2 w-full">
-                <Label className="sm:text-xs text-sm font-light">
-                  Seller Useraname
-                </Label>
-                <Input
-                  type="text"
-                  placeholder=""
-                  className="bg-white p-3 h-fit text-sm sm:text-xs"
-                />
-              </div>
-              <div className="flex flex-col items-start gap-2 w-full">
-                <Label className="sm:text-xs text-sm font-light">
-                  Date From
-                </Label>
-                <Input
-                  type="date"
-                  placeholder=""
-                  className="bg-white p-3 h-fit text-sm sm:text-xs"
-                />
-              </div>
-              <div className="flex flex-col items-start gap-2 w-full">
-                <Label className="sm:text-xs text-sm font-light">Date To</Label>
-                <Input
-                  type="date"
-                  placeholder=""
-                  className="bg-white p-3 h-fit text-sm sm:text-xs"
-                />
-              </div>
-            </div>
+    <Card className="w-full flex flex-col">
+      <CardHeader className="flex md:flex-row items-center justify-between">
+        <h2 className="flex text-lg md:text-2xl items-center gap-2 font-bold tracking-normal leading-tight">
+          <Flag className="text-primary" />
+          Overpayment Error Monitoring
+        </h2>
+        <div className="flex items-center gap-2 ">
+          <AddDiscrepancyDialog />
+          <Button className="text-xs py-2">
+            <Download />
+            Export CSV
+          </Button>
+        </div>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-4">
+        <div className="bg-gray-100 rounded-xl grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 p-4 gap-4">
+          {/* /form */}
+          <div className="flex flex-col items-start gap-2 w-full">
+            <Label className="sm:text-xs text-sm font-light">
+              Status Filter
+            </Label>
+            {/* TODO: */}
+            <Select>
+              <SelectTrigger className="w-full">
+                <SelectValue className="" placeholder="All Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="all">All</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex flex-col items-start gap-2 w-full">
+            <Label className="sm:text-xs text-sm font-light">
+              Seller Useraname
+            </Label>
+            <Input
+              type="text"
+              placeholder=""
+              className="bg-white p-3 h-fit text-sm sm:text-xs"
+            />
+          </div>
+          <div className="flex flex-col items-start gap-2 w-full">
+            <Label className="sm:text-xs text-sm font-light">Date From</Label>
+            <Input
+              type="date"
+              placeholder=""
+              className="bg-white p-3 h-fit text-sm sm:text-xs"
+            />
+          </div>
+          <div className="flex flex-col items-start gap-2 w-full">
+            <Label className="sm:text-xs text-sm font-light">Date To</Label>
+            <Input
+              type="date"
+              placeholder=""
+              className="bg-white p-3 h-fit text-sm sm:text-xs"
+            />
+          </div>
+        </div>
 
-            <DiscrepancyMonitoringTable />
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+        <DiscrepancyMonitoringTable />
+      </CardContent>
+    </Card>
   );
 };
 

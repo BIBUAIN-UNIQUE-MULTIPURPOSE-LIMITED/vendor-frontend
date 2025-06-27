@@ -97,12 +97,12 @@ const RateSettings = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <TabsList className="hidden md:flex  flex-wrap bg-white rounded border flex-1">
+          <TabsList className="hidden md:flex bg-white rounded border flex-1">
             {coins.map(({ name, symbol }) => (
               <TabsTrigger
                 key={symbol}
                 value={symbol}
-                className="text-sm py-3 text-center rounded"
+                className="text-sm py-3 data-[state=active]:bg-primary data-[state=active]:text-white p-0 h-full flex-1 text-center rounded"
                 onClick={() => setActiveCoin({ name, symbol })}
               >
                 {name}
@@ -129,58 +129,9 @@ const RateSettings = () => {
         {activeCoin && (
           <TabsContent value={activeCoin.symbol}>
             <div className="flex flex-col md:flex-row items-center w-full gap-4">
-              {platforms.map(
-                ({ name, marketPrice, costPrice, currency, status, order }) => (
-                  <Card key={name} className="aspect-[1.75/1] flex-1">
-                    <CardHeader>
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-bold text-sm tracking-tight leading-tight">
-                          {name}
-                        </h3>
-                        <span
-                          className={cn("capitalize", {
-                            "text-green-500": order === "buy",
-                            "text-red-500": order === "sell",
-                          })}
-                        >
-                          {order}
-                        </span>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div>
-                        <p className="text-xs font-light text-gray-700">
-                          Market Price ({currency})
-                        </p>
-                        <h4 className="font-bold">
-                          {formatCurrency(marketPrice, currency)}
-                        </h4>
-                      </div>
-                      <div>
-                        <div>
-                          <p className="text-xs font-light text-gray-700">
-                            Cost Price (NGN)
-                          </p>
-                          <h4 className="font-medium text-sm">
-                            {formatCurrency(costPrice, "NGN")}
-                          </h4>
-                        </div>
-                      </div>
-                    </CardContent>
-                    <CardFooter className="flex items-center justify-between">
-                      <Badge
-                        variant={
-                          status !== "active" ? "destructive" : "success"
-                        }
-                        className="capitalize text-xs"
-                      >
-                        {status}
-                      </Badge>
-                      <Switch id="status" />
-                    </CardFooter>
-                  </Card>
-                ),
-              )}
+              {platforms.map((platform, idx) => (
+                <PlatformRates key={idx} {...platform} />
+              ))}
             </div>
             <div className="flex flex-col gap-10 my-10">
               <EditRate />
@@ -200,6 +151,71 @@ const RateSettings = () => {
   );
 };
 export default RateSettings;
+
+type PlatformRatesProps = (typeof platforms)[0];
+const PlatformRates = ({
+  costPrice,
+  currency,
+  marketPrice,
+  name,
+  order,
+  status,
+}: PlatformRatesProps) => {
+  const [activeStatus, setActiveStatus] = useState(
+    status === "active" ? true : false,
+  );
+  return (
+    <Card
+      key={name}
+      className="aspect-[1.75/1] flex-1 flex-col items-start flex justify-evenly"
+    >
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <h3 className="font-bold text-sm tracking-tight leading-tight">
+            {name}
+          </h3>
+          <span
+            className={cn("capitalize", {
+              "text-green-500": order === "buy",
+              "text-red-500": order === "sell",
+            })}
+          >
+            {order}
+          </span>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div>
+          <p className="text-xs font-light text-gray-700">
+            Market Price ({currency})
+          </p>
+          <h4 className="font-bold">{formatCurrency(marketPrice, currency)}</h4>
+        </div>
+        <div>
+          <div>
+            <p className="text-xs font-light text-gray-700">Cost Price (NGN)</p>
+            <h4 className="font-medium text-sm">
+              {formatCurrency(costPrice, "NGN")}
+            </h4>
+          </div>
+        </div>
+      </CardContent>
+      <CardFooter className="flex items-center w-full justify-between">
+        <Badge
+          variant={activeStatus ? "success" : "destructive"}
+          className="capitalize text-xs"
+        >
+          {activeStatus ? "active" : "inactive"}
+        </Badge>
+        <Switch
+          id="status"
+          checked={activeStatus}
+          onClick={() => setActiveStatus(!activeStatus)}
+        />
+      </CardFooter>
+    </Card>
+  );
+};
 
 const EditRate = () => {
   return (
