@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, createContext, ReactNode } from "react";
+import { useContext, createContext, ReactNode, Fragment } from "react";
 
 import { useTimer, UseTimer } from "@/hooks/timer";
 import { SidebarTrigger } from "@/components/ui/sidebar";
@@ -67,16 +67,18 @@ export function Header() {
             </div>
             <div className="flex-none">
               <div className="flex gap-3 items-center">
-                <div className="flex-none hidden @2xl/header:block">
-                  <Timer variant="outline" />
-                </div>
                 <HeaderContext.Consumer>
                   {([, states]) => {
                     if (states.clockedIn) {
                       return (
-                        <div className="flex-none hidden @2xl/header:block">
-                          <Break variant="outline" />
-                        </div>
+                        <Fragment>
+                          <div className="flex-none hidden @2xl/header:block">
+                            <Timer variant="outline" />
+                          </div>
+                          <div className="flex-none hidden @2xl/header:block">
+                            <Break variant="outline" />
+                          </div>
+                        </Fragment>
                       );
                     }
 
