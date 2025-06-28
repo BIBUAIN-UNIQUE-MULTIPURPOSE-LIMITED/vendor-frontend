@@ -8,7 +8,6 @@ import {
   statusDistributionData,
   lifecycleFlowData,
   agentsData,
-  filterOptions
 } from '../../../examples/dashboard-data'
 
 // Lucide Icons
