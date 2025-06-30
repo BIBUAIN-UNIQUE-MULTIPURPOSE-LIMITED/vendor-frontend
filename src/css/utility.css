@@ -18,3 +18,23 @@
     text-transform: uppercase;
   }
 }
+
+@utility badge-red {
+  color: #c2410c !important;
+  background: #ffedd5;
+}
+
+@utility badge-green {
+  color: #15803d !important;
+  background: #dcfce7;
+}
+
+@utility badge-blue {
+  color: #1d4ed8 !important;
+  background: #dbeafe;
+}
+
+@utility badge-yellow {
+  color: #a16207 !important;
+  background: #fef9c3;
+}

@@ -1,0 +1,13 @@
+:root {
+  --badge-green-bg: 94, 248, 151;
+  --badge-green-text: 6, 95, 70;
+
+  --badge-yellow-bg: 250, 204, 21;
+  --badge-yellow-text: 133, 77, 14;
+
+  --badge-blue-bg: 59, 130, 246;
+  --badge-blue-text: 30, 58, 138;
+
+  --badge-red-bg: 248, 113, 113;
+  --badge-red-text: 127, 29, 29;
+}

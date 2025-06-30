@@ -1,39 +1,7 @@
 import { Fragment } from "react";
 
-import { Tabs, TabsTrigger } from "@/components/ui/tabs";
-import { TabsContent, TabsList } from "@/components/ui/tabs";
-
-import { tabs } from "@/examples/team-lead/shift/shift";
-
 export function Shift() {
-  return (
-    <Tabs defaultValue={tabs[0].name}>
-      <TabsList className="p-0 h-auto w-full border rounded-lg overflow-hidden">
-        {tabs.map(({ name }, index) => (
-          <Fragment key={index}>
-            <TabsTrigger
-              asChild
-              value={name}
-              className="py-2 border-none rounded-none bg-red-600"
-            >
-              <Button size="lg" variant="secondary">
-                <p className="text-sm font-semibold">
-                  <span className="one-line capitalize">{name}</span>
-                </p>
-              </Button>
-            </TabsTrigger>
-          </Fragment>
-        ))}
-      </TabsList>
-      {tabs.map(({ name, Component }, index) => (
-        <Fragment key={index}>
-          <TabsContent value={name}>
-            <Component />
-          </TabsContent>
-        </Fragment>
-      ))}
-    </Tabs>
-  );
+  return <ShiftReport />;
 }
 
 // Shift Flow
@@ -41,7 +9,7 @@ export function Shift() {
 import { Badge } from "@/components/ui/badge";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { CardContent, CardDescription } from "@/components/ui/card";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function ShiftFlow() {
@@ -171,17 +139,18 @@ export function ShiftFlow() {
 
 export function ShiftReport() {
   return (
-    <section className="space-y-5">
-      <ShiftReportShift />
-      <ShiftReportPunctuality />
-      <ShiftReportRate />
-      <ShiftReportCharges />
-      <ShiftReportProfit />
-      <ShiftReportCharges />
-      <ShiftReportComments />
-      <ShiftReportSummary />
-      <ShiftReportConfirm />
-    </section>
+    <Card className="pt-6">
+      <CardContent className="space-y-5">
+        <ShiftReportShift />
+        <ShiftReportPunctuality />
+        <ShiftReportRate />
+        <ShiftReportCharges />
+        <ShiftReportProfit />
+        <ShiftReportComments />
+        <ShiftReportSummary />
+        <ShiftReportConfirm />
+      </CardContent>
+    </Card>
   );
 }
 
@@ -212,8 +181,7 @@ export function ShiftReportCharges() {
             <div className="space-y-1">
               <Label className="text-base">
                 <span className="capitalize">
-                  sendout count <ArrowRight size={15} className="inline" /> all
-                  platforms
+                  sendout count &rarr; all platforms
                 </span>
               </Label>
               <Input
@@ -226,8 +194,7 @@ export function ShiftReportCharges() {
             <div className="space-y-1">
               <Label className="text-base">
                 <span className="capitalize">
-                  sendout amount <ArrowRight size={15} className="inline" /> all
-                  platforms
+                  sendout amount &rarr; all platforms
                 </span>
               </Label>
               <Input
@@ -240,8 +207,7 @@ export function ShiftReportCharges() {
             <div className="space-y-1">
               <Label className="text-base">
                 <span className="capitalize">
-                  exchange charges <ArrowRight size={15} className="inline" />{" "}
-                  all platforms
+                  exchange charges &rarr; all platforms
                 </span>
               </Label>
               <Input
@@ -350,7 +316,7 @@ import { AlarmClock, Save } from "lucide-react";
 export function ShiftReportConfirm() {
   return (
     <Card className="py-3">
-      <CardContent className="@container/grid">
+      <CardContent className="py-0 @container/grid">
         <div className="flex gap-3 items-center justify-between">
           <div className="flex-none">
             <Button
@@ -650,14 +616,14 @@ import {
 export function ShiftReportShift() {
   return (
     <Card>
-      <CardHeader className="flex gap-0 items-center justify-between">
+      <CardHeader className="flex flex-row gap-0 items-center justify-between">
         <div className="flex-1">
           <CardTitle className="text-xl font-semibold">
             <span className="capitalize">shift report</span>
           </CardTitle>
           <CardDescription className="text-base">
             <span className="sentence">
-              25-06-10 | Morning Shift (08:00 AM - 04:00 PM)
+              25-06-10 &bull; Morning Shift (08:00 AM - 04:00 PM)
             </span>
           </CardDescription>
         </div>
@@ -748,7 +714,7 @@ export function ShiftReportSummary() {
       </CardHeader>
       <CardContent className="@container/grid">
         <div className="grid gap-3 grid-cols-12">
-          <div className="col-span-12 @xl/grid:col-span-6 @3xl/grid:col-span-4">
+          <div className="col-span-12 @xl/grid:col-span-6">
             <div className="space-y-1">
               <Label className="text-base">
                 <span className="capitalize">punctuality status</span>
@@ -773,7 +739,7 @@ export function ShiftReportSummary() {
               </Select>
             </div>
           </div>
-          <div className="col-span-12 @xl/grid:col-span-6 @3xl/grid:col-span-4">
+          <div className="col-span-12 @xl/grid:col-span-6">
             <div className="space-y-1">
               <Label className="text-base">
                 <span className="capitalize">total coin purchased</span>
@@ -786,7 +752,7 @@ export function ShiftReportSummary() {
               />
             </div>
           </div>
-          <div className="col-span-12 @xl/grid:col-span-6 @3xl/grid:col-span-4">
+          <div className="col-span-12 @xl/grid:col-span-6">
             <div className="space-y-1">
               <Label className="text-base">
                 <span className="capitalize">average cost rate</span>
@@ -799,7 +765,7 @@ export function ShiftReportSummary() {
               />
             </div>
           </div>
-          <div className="col-span-12 @xl/grid:col-span-6 @3xl/grid:col-span-4">
+          <div className="col-span-12 @xl/grid:col-span-6">
             <div className="space-y-1">
               <Label className="text-base">
                 <span className="capitalize">average markup rate (%)</span>

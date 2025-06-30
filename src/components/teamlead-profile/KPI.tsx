@@ -71,15 +71,19 @@ import { tabs } from "@/examples/team-lead/kpi/kpi-tabination";
 export function KPITabination() {
   return (
     <Tabs defaultValue={tabs[0].name}>
-      <TabsList className="p-0 h-auto w-full border rounded-lg overflow-hidden">
+      <TabsList className="p-0 h-auto w-full border-none rounded-lg overflow-hidden">
         {tabs.map(({ name }, index) => (
           <Fragment key={index}>
             <TabsTrigger
               asChild
               value={name}
-              className="py-2 border-none rounded-none"
+              className="py-2 flex-1 border-none rounded-none"
             >
-              <Button size="lg" variant="secondary">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white hover:bg-white data-[state=active]:bg-chart-4 data-[state=active]:text-white"
+              >
                 <p className="text-sm font-semibold">
                   <span className="one-line capitalize">{name}</span>
                 </p>
@@ -330,7 +334,7 @@ import { coinData } from "@/examples/team-lead/kpi/kpi-tabination-coin";
 export function KPITabinationCoin() {
   return (
     <Card>
-      <CardHeader className="flex gap-0 items-center justify-between">
+      <CardHeader className="flex gap-0 flex-row items-center justify-between">
         <div className="flex-none">
           <CardTitle className="text-xl font-semibold">
             <span className="capitalize">coin exchange</span>

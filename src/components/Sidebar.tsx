@@ -22,6 +22,7 @@ import {
 
 export function SideBar() {
   const sidebar = useSidebar();
+  const pathname = usePathname();
 
   return (
     <Sidebar theme="var(--chart-5)" collapsible="icon">
@@ -78,8 +79,14 @@ export function SideBar() {
                     <SidebarMenuItem title={name}>
                       <SidebarMenuButton
                         asChild
+                        tooltip={name}
                         size={sidebar.open ? "lg" : "default"}
-                        className="text-white data-[state=active]:text-chart-4"
+                        className="text-white hover:bg-white/20 hover:text-white active:bg-white/40 active:text-white data-[active=true]:bg-white/20 data-[active=true]:text-white"
+                        isActive={
+                          href === "/team-lead"
+                            ? pathname === href
+                            : pathname.startsWith(href)
+                        }
                       >
                         <Link href={href}>
                           <DynamicIcon name={iconName} />
@@ -104,6 +111,7 @@ export function SideBar() {
 // Sidebar Props
 
 import { IconName } from "lucide-react/dynamic";
+import { usePathname } from "next/navigation";
 
 type RouteGroups = {
   [key: string]: Array<{
