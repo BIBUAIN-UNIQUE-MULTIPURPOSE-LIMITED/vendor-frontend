@@ -9,7 +9,7 @@ import { transactInsights } from "@/examples/payer/transactInsights";
 
 export function TransactionInsight() {
   return (
-    <Card className="py-3 gap-4 shadow-none rounded-md">
+    <Card className="py-3 gap-4 h-full shadow-none rounded-md">
       <CardHeader className="px-4">
         <Button
           disabled

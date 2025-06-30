@@ -211,7 +211,12 @@ export function ClockOut(props: React.ComponentProps<typeof Button>) {
 
   if (!states.clockedIn) {
     return (
-      <Button {...props} variant="default" onClick={clockOut}>
+      <Button
+        {...props}
+        variant="destructive"
+        onClick={clockOut}
+        className="text-white"
+      >
         <AlarmClock />
         <p className="text-xs font-semibold">
           <span className="capitalize">clock in</span>
